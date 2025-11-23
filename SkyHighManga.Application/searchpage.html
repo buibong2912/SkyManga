@@ -1,0 +1,2828 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <title> - truyện tranh mới nhất</title>
+    <meta name="description" content="Truyện tranh  mới nhất tại NetTruyen">
+    <meta name="keywords" content=", đọc truyện">
+    <link rel="canonical" href="https://aquastarsleep.co.uk" />
+
+
+
+
+
+
+
+
+
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "NetTruyen",
+            "alternateName": "Net Truyện",
+            "url": "https://aquastarsleep.co.uk"
+        }
+    </script>
+
+
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:url" content="https://aquastarsleep.co.uk/tim-kiem" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content=" - truyện tranh  mới nhất" />
+    <meta property="og:description" content="Truyện tranh  mới nhất tại NetTruyen" />
+    <meta property="og:image" content="https://aquastarsleep.co.uk/images/PhantomLimo/logo-thumb.png" />
+
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="google-site-verification" content="YjrANBnVQtUXVnSGHddJzZykwMVtMLTEai_FUsZ9Wdg" />
+    <link rel="icon" href="/images/PhantomLimo/favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="/images/PhantomLimo/favicon.png" type="image/png" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/icon-font.css" />
+    <link rel="stylesheet" href="/css/splide-core.min.css" />
+
+    <link rel="stylesheet" href="/css/style.css?v=1.13" />
+    <link rel="stylesheet" href="/css/responsive.css?v=1.13" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="auth"></div>
+<script>
+    async function getUser() {
+        var response = await $.ajax({
+            type: 'POST',
+            xhrFields: { withCredentials: true },
+            url: 'https://api.truyennganhay.net/auth/user',
+            contentType: 'application/json',
+        }).catch(() => {
+            console.log('getUser error');
+            return null;
+        });
+
+        if (response && response.status === 1) {
+            return response.user;
+        }
+        return null;
+    }
+
+    async function refreshToken(newToken = false) {
+        var response = await $.ajax({
+            type: 'POST',
+            xhrFields: { withCredentials: true },
+            url: 'https://api.truyennganhay.net/auth/refresh-token',
+            contentType: 'application/json',
+        }).catch(() => {
+            console.log('refreshToken error');
+            return null;
+        });
+
+        if (response && response.status === 1) {
+            return response.user;
+        }
+        return null;
+    }
+
+    async function logout(newToken = false) {
+        await $.ajax({
+            type: 'POST',
+            xhrFields: { withCredentials: true },
+            url: 'https://api.truyennganhay.net/auth/logout',
+            contentType: 'application/json',
+            error: function (data) {
+                console.log('logout error');
+                return null;
+            },
+        });
+    }
+
+    function handleSaveUserToSessionStorage(user) {
+        sessionStorage.setItem(
+            'user',
+            JSON.stringify({
+                ...user,
+            }),
+        );
+    }
+
+    function handleRemoveUserFromSessionStorage() {
+        sessionStorage.removeItem('user');
+    }
+
+    function getUserFromSessionStorage() {
+        try {
+            return JSON.parse(sessionStorage.getItem('user'));
+        } catch {
+            return sessionStorage.getItem('user');
+        }
+    }
+
+</script>
+<script src="/js/utils/cookie.js"></script>
+<!-- <script src="/js/jquery.min.js"></script> -->
+<script src="/js/utils/common.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/splide.min.js"></script>
+<script>
+    // Check darkmode config
+    function checkDarkModeConfig() {
+        const lightMode = localStorage.getItem('lm');
+        if (lightMode === 'true') {
+            document.body.classList.remove('darkmode');
+            $('.dark-mode').removeClass('on');
+        } else {
+            document.body.classList.add('darkmode');
+            $('.dark-mode').addClass('on');
+        }
+    }
+
+    // Toggle dark mode config (from main theme)
+    function toggleDarkModeConfig(mode) {
+        const darkMode = mode !== undefined ? mode : $('body').hasClass('darkmode');
+        if (!darkMode) {
+            document.body.classList.add('darkmode');
+        } else {
+            document.body.classList.remove('darkmode');
+        }
+
+        localStorage.setItem('lm', darkMode);
+        checkDarkModeConfig();
+    }
+
+    // Initialize dark mode on load
+    checkDarkModeConfig();
+
+</script>
+<div class="wrapper">
+
+
+    <header class="header" id="header">
+        <div class="container">
+            <div class="main-header d-flex align-items-center">
+                <a id="mobile_menu" class="d-flex d-xl-none" data-bs-toggle="offcanvas" href="#menumobile"
+                   aria-label="Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                                d="M21 7.75H3C2.59 7.75 2.25 7.41 2.25 7C2.25 6.59 2.59 6.25 3 6.25H21C21.41 6.25 21.75 6.59 21.75 7C21.75 7.41 21.41 7.75 21 7.75Z"
+                                fill="#1E201E" />
+                        <path
+                                d="M21 12.75H3C2.59 12.75 2.25 12.41 2.25 12C2.25 11.59 2.59 11.25 3 11.25H21C21.41 11.25 21.75 11.59 21.75 12C21.75 12.41 21.41 12.75 21 12.75Z"
+                                fill="#1E201E" />
+                        <path
+                                d="M21 17.75H3C2.59 17.75 2.25 17.41 2.25 17C2.25 16.59 2.59 16.25 3 16.25H21C21.41 16.25 21.75 16.59 21.75 17C21.75 17.41 21.41 17.75 21 17.75Z"
+                                fill="#1E201E" />
+                    </svg>
+                </a>
+                <a class="d-flex d-xl-none menu-random" href="/random">
+                    <img alt="" src="/images/random.png" alt="Random" width="24" height="24" />
+                </a>
+                <a class="logo" title="Truyện tranh online" href="/">
+                    <img class="logo-light" alt="Nettruyen" src="/images/PhantomLimo/logo.png" width="150"/>
+                    <img class="logo-dark" alt="Nettruyen" src="/images/PhantomLimo/logo-dark.png" width="150" />
+                </a>
+
+                <ul class="nav navbar-nav flex-row flex-wrap main-menu d-none d-xl-flex">
+
+                    <li class="">
+                        <a href="/random">Random</a>
+                    </li>
+
+                    <li class="">
+                        <a href="/hot-nhat?type=all">Hot nhất</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/the-loai" class="sub-toggle" aria-expanded="false">Thể loại
+                            <i class="icon-arrow-down-1"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                                <span
+                                ><a class="dropdown-item" href="/the-loai/manga"
+                                >Manga (Nhật)</a
+                                ></span>
+                            <span
+                            ><a class="dropdown-item" href="/the-loai/manhua"
+                            >Manhua (Trung)</a
+                            ></span>
+                            <span
+                            ><a class="dropdown-item" href="/the-loai/manhwa"
+                            >Manhwa (Hàn)</a
+                            ></span>
+                            <span
+                            ><a class="dropdown-item" href="/the-loai/marvel-comics"
+                            >Marvel Comics (Mỹ)</a
+                            ></span>
+                            <span
+                            ><a class="dropdown-item" href="/the-loai/dc-comics"
+                            >DC Comics (Mỹ)</a
+                            ></span>
+                        </div>
+                    </li>
+                    <li class="has-sub menu-tag">
+                            <span class="sub-toggle">Tags
+                        <i class="icon-arrow-down-1"></i>
+                    </span>
+                        <div class="dropdown-menu">
+
+                                <span>
+                                <a class="dropdown-item" href="/genre/hangtruyen">HangTruyen (353)</a>
+                            </span>
+
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/action">Action (5377)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/romance">Romance (5363)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/comedy">Comedy (5077)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/fantasy">Fantasy (3461)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/drama">Drama (3145)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/adventure">Adventure (2839)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/ngon-tinh">Ngôn Tình (2610)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/school-life">School Life (2243)</a>
+                            </span>
+
+                            <span>
+                            <button class="view-all" onclick="viewAllTags()">Xem tất cả</button>
+                        </span>
+                            <div class="more-tags" style="display: none;">
+
+                                    <span>
+                                    <a class="dropdown-item" href="/genre/shoujo">Shoujo (2051)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/slice-of-life">Slice of Life (1968)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/supernatural">Supernatural (1831)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/shounen">Shounen (1815)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/xuyen-khong">Xuyên Không (1788)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/mystery">Mystery (1528)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/webtoon">Webtoon (1265)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/seinen">Seinen (1095)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/co-dai">Cổ Đại (1004)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/horror">Horror (829)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/ecchi">Ecchi (792)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/martial-arts">Martial Arts (781)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/harem">Harem (726)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/sci-fi">Sci-fi (720)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/full-color">Full Color (635)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/psychological">Psychological (566)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/historical">Historical (549)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/tragedy">Tragedy (440)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/truyen-tranh-18">18+ (361)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/web-comic">web comic (323)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/mature">Mature (293)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/dam-my">Đam Mỹ (270)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/comic">Comic (269)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/huyen-huyen">Huyền Huyễn (265)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/josei">Josei (257)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/smut">Smut (239)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/gender-bender">Gender Bender (226)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/yuri">Yuri (209)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/one-shot">One shot (198)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/superhero">Superhero (170)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/sports">Sports (157)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/chuyen-sinh">Chuyển Sinh (111)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/trinh-tham">Trinh Thám (89)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/hanh-dong">Hành Động (87)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/gia-tuong">Giả Tưởng (86)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/doujinshi">Doujinshi (83)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/trong-sinh">Trọng Sinh (80)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/soft-yuri">Soft Yuri (74)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/phep-thuat">Phép Thuật (63)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/soft-yaoi">Soft Yaoi (51)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/isekai">Isekai (48)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/mecha-117">Mecha (41)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/magic">Magic (37)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/thieu-nhi">Thiếu Nhi (32)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/anime">Anime (32)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/cooking">Cooking (25)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/viet-nam">Việt Nam (25)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/co-trang">Cổ Trang (23)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/crossdress">Crossdress (23)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/crime">Crime (21)</a>
+                                </span>
+
+                                <span>
+                                    <a class="dropdown-item" href="/genre/yaoi">Yaoi (21)</a>
+                                </span>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="header-right d-flex align-items-center justify-content-end ms-auto">
+                    <a href="#" class="toggle-formsearch ms-auto d-block d-xl-none" aria-label="Search">
+                        <i class="icon-search-normal"></i>
+                    </a>
+                    <!-- Search Modal -->
+                    <form class="d-xl-flex form-search" id="form-search" action="/tim-kiem">
+                        <input
+                                class="form-control"
+                                type="text"
+                                placeholder="Tìm kiếm"
+                                aria-label="Tìm kiếm"
+                        />
+                        <a href="/tim-kiem" class="i-filter"> Nâng cao </a>
+                        <i class="icon-search-normal"></i>
+                        <button type="button" class="s-clear">
+                            <i class="icon-close-circle"></i>
+                        </button>
+                        <div class="nav search-result-wrapper" id="search-suggest">
+                            <p>Gợi ý cho bạn</p>
+                            <div class="tab-content">
+                                <ul class="result list-unstyled"></ul>
+                                <a href="/tim-kiem" class="view-all"> Xem toàn bộ kết quả </a>
+                            </div>
+                        </div>
+                        <div class="overlay"></div>
+                    </form>
+
+                    <script>
+                        const apiUrl = 'https://api.truyennganhay.net';
+                        const listMangaElem = $('#form-search .result').first();
+
+
+                        function renderMatchedTitle(search, title) {
+                            const collator = new Intl.Collator(undefined, { sensitivity: 'base' });
+                            const searchWords = search.toLowerCase().split(/\s+/);
+                            const titleLower = title.toLowerCase();
+
+                            // Try to match the full search term first
+                            const fullMatchIndex = titleLower.indexOf(search.toLowerCase());
+                            if (fullMatchIndex !== -1) {
+                                const matched = title.slice(
+                                    fullMatchIndex,
+                                    fullMatchIndex + search.length,
+                                );
+                                return (
+                                    title.slice(0, fullMatchIndex) +
+                                    `<span class="color">${matched}</span>` +
+                                    title.slice(fullMatchIndex + search.length)
+                                );
+                            }
+
+                            // If full search term is not matched, fallback to individual words
+                            const matches = searchWords.map((word) => {
+                                let index = -1;
+                                for (let i = 0; i <= titleLower.length - word.length; i++) {
+                                    if (
+                                        collator.compare(
+                                            titleLower.slice(i, i + word.length),
+                                            word,
+                                        ) === 0
+                                    ) {
+                                        index = i;
+                                        break;
+                                    }
+                                }
+
+                                // If no match is found, return the original title
+                                if (index === -1) {
+                                    return { index: -1, matched: null };
+                                }
+
+                                const matched = title.slice(index, index + word.length);
+                                // return title.slice(0, index) + `<span class="color">${matched}</span>` + title.slice(index + search.length);
+                                return { index, matched };
+                            });
+
+                            let result = title;
+                            for (const matched of matches) {
+                                if (matched.matched) {
+                                    result = result.replace(
+                                        matched.matched,
+                                        `<span class="color">${matched.matched}</span>`,
+                                    );
+                                }
+                            }
+                            return result;
+                        }
+
+                        function appendRecommendMangas(mangas, keyword) {
+                            listMangaElem.empty();
+                            listMangaElem.append(
+                                mangas.map((manga) => {
+                                    const title = manga.title;
+                                    const posterPath = manga.posterPath;
+                                    const slug = manga.slug;
+                                    return `<li>
+                            <div class="p-thumb flex-shrink-0">
+                                <a title="${title}" href="${slug}" rel="nofollow">
+                                    <img
+                                        class="img-poster"
+                                        data-original="${posterPath}"
+                                        alt="${title}"
+                                        src="${posterPath}"
+                                    />
+                                </a>
+                            </div>
+                            <div class="p-content flex-grow-1">
+                                <h3 class="m-name">
+                                    <a href="${slug}">${renderMatchedTitle(keyword, manga.title)}</a>
+                                </h3>
+                            
+                                <div class="group-star">
+                                    <div class="list-chaps">
+                                        ${manga.chapters.slice(0, 1).map(chapter => (
+                                        `<span class="chapter">
+                                                <a data-id="${chapter.id}" href="${manga.slug}/${chapter.slug}" title="${chapter.name}">
+                                                    ${chapter.name}
+                                                </a>
+                                            </span>`
+                                    ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>`;
+                                }),
+                            );
+                        }
+
+                        $('#form-search input').on(
+                            'keyup',
+                            debounce(function () {
+                                const keyword = $(this).val();
+                                $.ajax({
+                                    method: 'GET',
+                                    url: `${apiUrl}/mangas/search?keyword=${keyword}`,
+                                    success: function (res) {
+                                        if (res.status && res.data) {
+                                            const mangas = res.data;
+                                            appendRecommendMangas(mangas, keyword);
+                                            $('#search-suggest .tab-content > a').attr(
+                                                'href',
+                                                `/tim-kiem?keyword=${keyword}`,
+                                            );
+                                        } else {
+                                            alert('search error');
+                                        }
+                                    },
+                                    error: function (err) {
+                                        alert('search error: ' + err);
+                                    },
+                                });
+                            }, 200),
+                        );
+
+                        $(document).ready(function () {
+                            // Toggle Search Form Mobile
+                            const forms = $('.form-search');
+                            const btnToggleSearchForms = $('.toggle-formsearch');
+
+                            if (btnToggleSearchForms.length) {
+                                // Add a click event listener to each button
+                                btnToggleSearchForms.each(function (index) {
+                                    $(this).on('click', function () {
+                                        const form = forms.eq(index);
+                                        form.toggleClass('active-mobile');
+                                        form.find('input').focus();
+                                        form.find('.search-result-wrapper').show();
+                                    });
+                                });
+                            }
+
+                            // Show search result wrapper when input is focused
+                            forms.find('input').on('focus', function () {
+                                $(this)
+                                    .closest('.form-search')
+                                    .find('.search-result-wrapper')
+                                    .show();
+                            });
+
+                            // Hide search result wrapper when clicking outside
+                            $(document).on('click', function (event) {
+                                if (
+                                    !$(event.target).closest(
+                                        '.form-search, a.toggle-formsearch, .search-result-wrapper',
+                                    ).length
+                                ) {
+                                    $('.search-result-wrapper').hide();
+                                    forms.removeClass('active-mobile');
+                                }
+                            });
+                            $('.form-search .overlay').on('click', function () {
+                                $(this)
+                                    .closest('.form-search')
+                                    .find('.search-result-wrapper')
+                                    .hide();
+                                $(this).closest('.form-search').removeClass('active-mobile');
+                            });
+                        });
+                    </script>
+
+                    <div class="dark-mode d-none d-xl-block">
+                        <button type="button" class="btn-switch" aria-label="Switch mode">
+                            <img
+                                    src="/images/btn-lightmode.png"
+                                    class="light"
+                                    width="38"
+                                    height="35"
+                                    alt="Light mode"
+                            />
+                            <img
+                                    src="/images/btn-darkmode.png"
+                                    class="dark"
+                                    width="38"
+                                    height="35"
+                                    alt="Dark mode"
+                            />
+                        </button>
+                    </div>
+                    <div hidden class="nav-account list-inline" id="not-loggin">
+                            <span class="login-link d-none d-xl-flex">
+                        <button
+                                class="btn btn-login"
+                                rel="nofollow"
+                                data-bs-toggle="modal"
+                                data-bs-target="#loginModal"
+                        >
+                            <span>Đăng nhập</span>
+                            </button>
+                            </span>
+
+                        <a id="avatar" class="d-flex d-xl-none user-avatar-img" data-bs-toggle="modal"
+                           data-bs-target="#loginModal">
+                            <img class="" alt="Avatar" src="/images/no-avatar.png" style="object-fit:contain;" />
+                        </a>
+                    </div>
+                    <!-- Đã login  -->
+                    <div hidden class="dropdown nav-account" id="has-login">
+                        <button
+                                class="dropdown-toggle"
+                                type="button"
+                                id="menuAccount"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                        >
+                            <!-- <img
+                                id="userava"
+                                class="user-avatar-img"
+                                alt="Avatar"
+                                src="images/avatar.png"
+                            /> -->
+                            <div id="avatar-temp-header" class="avatar-temp user-avatar-img" data-name=""></div>
+                            <span id="username" class="d-none d-xl-block">Marriage Gray</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="menuAccount">
+                                <span>
+                            <a class="dropdown-item" href="/tai-khoan">
+                                Tài khoản</a
+                            >
+                        </span>
+                            <span>
+                            <a
+                                    class="dropdown-item"
+                                    href="/tai-khoan#reading"
+                            >
+                                Truyện đang đọc</a
+                            >
+                        </span>
+                            <span>
+                            <a class="dropdown-item" href="/tai-khoan#following">
+                                Truyện đã lưu</a
+                            >
+                        </span>
+                            <span>
+                            <a
+                                    id="logout"
+                                    class="dropdown-item"
+                                    class="user-logout"
+                                    href="#"
+                            >
+                                Đăng xuất</a
+                            >
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="menumobile" aria-labelledby="offcanvasLabel">
+        <div class="offcanvas-body">
+            <div class="off-header">
+                <div class="dark-mode">
+                    <button type="button" class="btn-switch" aria-label="Switch mode">
+                        <img src="/images/btn-lightmode.png" class="light" width="38" height="35" alt="Light mode">
+                        <img src="/images/btn-darkmode.png" class="dark" width="38" height="35" alt="Dark mode">
+                    </button>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <i class="icon-close-circle"></i>
+                </button>
+            </div>
+            <ul class="nav navbar-nav flex-wrap main-menu">
+                <li class="active">
+                    <a href="/">Trang chủ</a>
+                </li>
+                <li class="">
+                    <a href="/hot-nhat?type=all">Hot nhất</a>
+                </li>
+                <li class="has-sub">
+                    <a href="/the-loai" class="sub-toggle" aria-expanded="false">Thể loại
+                    </a>
+                    <div class="dropdown-menu">
+                        <span><a class="dropdown-item" href="/the-loai/manga">Manga (Nhật)</a></span>
+                        <span><a class="dropdown-item" href="/the-loai/manhua">Manhua (Trung)</a></span>
+                        <span><a class="dropdown-item" href="/the-loai/manhwa">Manhwa (Hàn)</a></span>
+                        <span><a class="dropdown-item" href="/the-loai/marvel-comics">Marvel Comics (Mỹ)</a></span>
+                        <span><a class="dropdown-item" href="/the-loai/dc-comics">DC Comics (Mỹ)</a></span>
+                    </div>
+                </li>
+                <li class="has-sub">
+                        <span class="sub-toggle">Tags
+                    <i class="icon-arrow-down-1"></i>
+                </span>
+                    <div class="dropdown-menu">
+
+                            <span>
+                            <a class="dropdown-item" href="/genre/hangtruyen">HangTruyen (353)</a>
+                        </span>
+
+
+                        <span>
+                            <a class="dropdown-item" href="/genre/action">Action (5377)</a>
+                        </span>
+
+                        <span>
+                            <a class="dropdown-item" href="/genre/romance">Romance (5363)</a>
+                        </span>
+
+                        <span>
+                            <a class="dropdown-item" href="/genre/comedy">Comedy (5077)</a>
+                        </span>
+
+                        <span>
+                            <a class="dropdown-item" href="/genre/fantasy">Fantasy (3461)</a>
+                        </span>
+
+                        <span>
+                            <a class="dropdown-item" href="/genre/drama">Drama (3145)</a>
+                        </span>
+
+                        <span>
+                            <a class="dropdown-item" href="/genre/adventure">Adventure (2839)</a>
+                        </span>
+
+                        <span>
+                            <a class="dropdown-item" href="/genre/ngon-tinh">Ngôn Tình (2610)</a>
+                        </span>
+
+                        <span>
+                            <a class="dropdown-item" href="/genre/school-life">School Life (2243)</a>
+                        </span>
+
+                        <span>
+                        <button class="view-all" onclick="viewAllTags()">Xem tất cả</button>
+                    </span>
+                        <div class="more-tags" style="display: none;">
+
+                                <span>
+                                <a class="dropdown-item" href="/genre/hangtruyen">HangTruyen (353)</a>
+                            </span>
+
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/shoujo">Shoujo (2051)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/slice-of-life">Slice of Life (1968)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/supernatural">Supernatural (1831)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/shounen">Shounen (1815)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/xuyen-khong">Xuyên Không (1788)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/mystery">Mystery (1528)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/webtoon">Webtoon (1265)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/seinen">Seinen (1095)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/co-dai">Cổ Đại (1004)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/horror">Horror (829)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/ecchi">Ecchi (792)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/martial-arts">Martial Arts (781)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/harem">Harem (726)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/sci-fi">Sci-fi (720)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/full-color">Full Color (635)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/psychological">Psychological (566)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/historical">Historical (549)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/tragedy">Tragedy (440)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/truyen-tranh-18">18+ (361)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/hangtruyen">HangTruyen (353)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/web-comic">web comic (323)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/mature">Mature (293)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/dam-my">Đam Mỹ (270)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/comic">Comic (269)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/huyen-huyen">Huyền Huyễn (265)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/josei">Josei (257)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/smut">Smut (239)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/gender-bender">Gender Bender (226)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/yuri">Yuri (209)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/one-shot">One shot (198)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/superhero">Superhero (170)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/sports">Sports (157)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/chuyen-sinh">Chuyển Sinh (111)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/trinh-tham">Trinh Thám (89)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/hanh-dong">Hành Động (87)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/gia-tuong">Giả Tưởng (86)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/doujinshi">Doujinshi (83)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/trong-sinh">Trọng Sinh (80)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/soft-yuri">Soft Yuri (74)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/phep-thuat">Phép Thuật (63)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/soft-yaoi">Soft Yaoi (51)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/isekai">Isekai (48)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/mecha-117">Mecha (41)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/magic">Magic (37)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/thieu-nhi">Thiếu Nhi (32)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/anime">Anime (32)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/cooking">Cooking (25)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/viet-nam">Việt Nam (25)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/co-trang">Cổ Trang (23)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/crossdress">Crossdress (23)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/crime">Crime (21)</a>
+                            </span>
+
+                            <span>
+                                <a class="dropdown-item" href="/genre/yaoi">Yaoi (21)</a>
+                            </span>
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Đăng nhập</h5>
+                    <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                    >
+                        <i class="icon-close-circle"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="d-flex align-items-center justify-content-center g_id_signin"
+                          style="min-height: 200px">
+                        <a href="" class="google btn" id="google-authen-btn">
+                            <ion-icon name="logo-google"></ion-icon> Login with
+                            Google
+                        </a>
+                    </form>
+                    <!-- <div class="text-center reg-acc">
+                Chưa có tài khoản?
+                <a
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#registerModal"
+                    class="color"
+                    >Đăng kí ngay</a
+                >
+            </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#google-authen-btn').on('click', (e) => {
+            e.preventDefault();
+            window.location.href =
+                'https://api.truyennganhay.net' +
+                '/auth/get-google-auth-url' +
+                '/?callback=' +
+                window.location.href;
+        });
+    </script>
+
+
+    <script>
+        function handleHeaderGetUserInfoFromLS() {
+            let user = getUserFromSessionStorage();
+            if (user) {
+                handleHeaderLoginSuccess(user);
+            } else {
+                handleHeaderLogout();
+            }
+        }
+
+        function handleHeaderLoginSuccess(user) {
+            $('#not-loggin').attr('hidden', true);
+            $('#has-login').attr('hidden', false);
+
+            $('#userava').attr('src', user.avatar);
+            $('#username').text(user.name);
+            !user.avatar && $('#avatar-temp-header').attr('data-name', user.name);
+            if (user.avatar) {
+                $('#avatar-temp-header').css({
+                    'background-image': `url(${user.avatar})`,
+                    'background-size': 'cover',
+                    'background-position': 'center',
+                    'background-repeat': 'no-repeat',
+                });
+            } else {
+                $('#avatar-temp-header').text(user.name[0]).css({
+                    'background-color': '#787978',
+                });
+            }
+            // handleSetTempAva(user.avatar)
+        }
+
+        function handleHeaderLogout() {
+            $('#not-loggin').attr('hidden', false);
+            $('#has-login').attr('hidden', true);
+
+            $('#userava').attr('src', '');
+            $('#username').text('');
+        }
+
+        $('#logout').on('click', async function () {
+            await logout();
+            handleRemoveUserFromSessionStorage();
+            handleHeaderGetUserInfoFromLS();
+            window.location.reload()
+        });
+
+        var recommendMangas = [];
+        async function getRecommendMangas() {
+            const response = await $.ajax({
+                type: 'GET',
+                xhrFields: { withCredentials: true },
+                url: apiUrl + '/mangas/recommend',
+                contentType: 'application/json',
+            }).catch(() => {
+                return null;
+            });
+
+            if (response && response.status === 200) {
+                return response.data;
+            }
+
+            return null;
+        }
+        $('form.form-search input').on('focus', async function () {
+            if (!recommendMangas.length) {
+                recommendMangas = await getRecommendMangas();
+                appendRecommendMangas(recommendMangas, '');
+            }
+
+            // $('#form-search input').val('');
+        });
+
+        $('.dropdown-item').on('click', function (e) {
+            window.location.href = $(e.target).attr('href');
+        });
+        checkDarkModeConfig()
+        handleCallbackCheckAuthIsDone(handleHeaderGetUserInfoFromLS);
+    </script>
+
+    <div id="vote_noti">
+        <p></p>
+        <img src="/images/details/img-vote-noti.png" width="64" height="92" alt="" />
+    </div>
+
+
+    <main>
+        <div class="container">
+
+            <div class="banner-center-content">
+                <div class="off-mobile banner-double">
+                    <a href="https://hangtruyen.co" target="_blank">
+                        <img rel="nofollow" alt="banner" src="/images/banners/HT_1330x100.png" />
+                    </a>
+                    <a href="https://hangtruyen.co" target="_blank">
+                        <img rel="nofollow" alt="banner" src="/images/banners/HT_1330x100.png" />
+                    </a>
+                </div>
+                <a href="https://hangtruyen.co" target="_blank">
+                    <img class="off-desktop" rel="nofollow" alt="banner" src="/images/banners/HT_728x90.png" />
+                </a>
+            </div>
+
+        </div>
+        <div class="search-wrapper">
+            <div class="container">
+                <div class="page-breadcrumb">
+                    <span class="item"><a href="/">Trang chủ</a></span>
+                    <span class="item breadcrumb_last" aria-current="page">Tìm kiếm</span>
+                </div>
+                <div class="row flex-lg-row-reverse">
+                    <div class="col-lg-4">
+                        <div class="sidebar mb-3">
+                            <span class="title">Bộ lọc</span>
+                            <div class="form-search-normal">
+                                <form class="form-search">
+                                    <input class="form-control" type="text" placeholder="Tìm kiếm tên truyện"
+                                           aria-label="Tìm kiếm" value="" />
+                                    <i class="icon-search-normal"></i>
+                                </form>
+                                <a href="" class="fsn-icon d-lg-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none">
+                                        <path
+                                                d="M10.9404 22.65C10.4604 22.65 9.99039 22.53 9.55039 22.29C8.67039 21.8 8.14039 20.91 8.14039 19.91V14.61C8.14039 14.11 7.81039 13.36 7.50039 12.98L3.76039 9.01998C3.13039 8.38998 2.65039 7.30998 2.65039 6.49998V4.19998C2.65039 2.59998 3.86039 1.34998 5.40039 1.34998H18.6004C20.1204 1.34998 21.3504 2.57998 21.3504 4.09998V6.29998C21.3504 7.34998 20.7204 8.53998 20.1304 9.12998L15.8004 12.96C15.3804 13.31 15.0504 14.08 15.0504 14.7V19C15.0504 19.89 14.4904 20.92 13.7904 21.34L12.4104 22.23C11.9604 22.51 11.4504 22.65 10.9404 22.65ZM5.40039 2.84998C4.70039 2.84998 4.15039 3.43998 4.15039 4.19998V6.49998C4.15039 6.86998 4.45039 7.58998 4.83039 7.96998L8.64039 11.98C9.15039 12.61 9.65039 13.66 9.65039 14.6V19.9C9.65039 20.55 10.1004 20.87 10.2904 20.97C10.7104 21.2 11.2204 21.2 11.6104 20.96L13.0004 20.07C13.2804 19.9 13.5604 19.36 13.5604 19V14.7C13.5604 13.63 14.0804 12.45 14.8304 11.82L19.1104 8.02998C19.4504 7.68998 19.8604 6.87998 19.8604 6.28998V4.09998C19.8604 3.40998 19.3004 2.84998 18.6104 2.84998H5.40039Z"
+                                                fill="#473D98" />
+                                        <path
+                                                d="M5.99968 10.75C5.85968 10.75 5.72968 10.71 5.59968 10.64C5.24968 10.42 5.13968 9.95002 5.35968 9.60002L10.2897 1.70002C10.5097 1.35002 10.9697 1.24002 11.3197 1.46002C11.6697 1.68002 11.7797 2.14002 11.5597 2.49002L6.62968 10.39C6.48968 10.62 6.24968 10.75 5.99968 10.75Z"
+                                                fill="#473D98" />
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="list-settings">
+                                <div id="dd-sort" class="dropdown">
+                                    <a href="" class="dropdown-toggle" id="dropdownZoom" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <span>Sắp xếp</span><i class="icon-arrow-down-1"></i>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownZoom">
+                                        <div class="list-mode">
+                                                <span><a data-value="view_desc" class="dropdown-item"
+                                                         href="#">Lượt xem giảm dần</a></span>
+                                            <span><a data-value="view_asc" class="dropdown-item" href="#">Lượt
+                                            xem tăng dần</a></span>
+                                            <span><a data-value="udpated_at_date_desc" class="dropdown-item"
+                                                     href="#">Ngày cập nhật giảm dần</a></span>
+                                            <span><a data-value="udpated_at_date_asc" class="dropdown-item"
+                                                     href="#">Ngày cập nhật tăng dần</a></span>
+                                            <span><a data-value="created_at_date_desc" class="dropdown-item"
+                                                     href="#">Ngày đăng giảm dần</a></span>
+                                            <span><a data-value="created_at_date_asc" class="dropdown-item"
+                                                     href="#">Ngày đăng tăng dần</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>Thể loại:</span>
+                                    <div class="list-cats list-checkbox">
+                                        <div class="form-check">
+                                            <input class="form-check-input checkbox-all" type="checkbox" value="" id="cat--all">
+                                            <label class="form-check-label" for="cat--all">
+                                                Tất cả
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                                   id="cat--1"
+                                            >
+                                            <label class="form-check-label" for="cat--1">
+                                                Manga
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="2"
+                                                   id="cat--2"
+                                            >
+                                            <label class="form-check-label" for="cat--2">
+                                                Manhua
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="3"
+                                                   id="cat--3"
+                                            >
+                                            <label class="form-check-label" for="cat--3">
+                                                Manhwa
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="4"
+                                                   id="cat--4"
+                                            >
+                                            <label class="form-check-label" for="cat--4">
+                                                Marvel Comics
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="5"
+                                                   id="cat--5"
+                                            >
+                                            <label class="form-check-label" for="cat--5">
+                                                DC Comics
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>Tags:</span>
+                                    <div class="list-genres">
+
+
+                                            <span data-value="135" class="  ">
+                                        #15+
+                                    </span>
+
+
+                                        <span data-value="29" class="  ">
+                                        #18+
+                                    </span>
+
+
+                                        <span data-value="169" class="  ">
+                                        #Abo
+                                    </span>
+
+
+                                        <span data-value="97" class="  ">
+                                        #Action
+                                    </span>
+
+
+                                        <span data-value="146" class="  ">
+                                        #Adaptation
+                                    </span>
+
+
+                                        <span data-value="1" class="  ">
+                                        #Adventure
+                                    </span>
+
+
+                                        <span data-value="240" class="  ">
+                                        #AI
+                                    </span>
+
+
+                                        <span data-value="178" class="  ">
+                                        #Aliens
+                                    </span>
+
+
+                                        <span data-value="131" class="  ">
+                                        #Anh Chị Em Kế
+                                    </span>
+
+
+                                        <span data-value="48" class="  ">
+                                        #Anime
+                                    </span>
+
+
+                                        <span data-value="123" class="  ">
+                                        #Âu Cổ
+                                    </span>
+
+
+                                        <span data-value="234" class="  ">
+                                        #Award Winning
+                                    </span>
+
+
+                                        <span data-value="232" class="  ">
+                                        #bí ẩn
+                                    </span>
+
+
+                                        <span data-value="170" class="  ">
+                                        #Boy Love
+                                    </span>
+
+
+                                        <span data-value="218" class="  ">
+                                        #Boys&#39; Love
+                                    </span>
+
+
+                                        <span data-value="132" class="  ">
+                                        #Cha Con
+                                    </span>
+
+
+                                        <span data-value="118" class="  ">
+                                        #Chiếm Hữu
+                                    </span>
+
+
+                                        <span data-value="197" class="  ">
+                                        #Childhood Friends
+                                    </span>
+
+
+                                        <span data-value="198" class="  ">
+                                        #Chuyển Sinh
+                                    </span>
+
+
+                                        <span data-value="99" class="  ">
+                                        #Cổ Đại
+                                    </span>
+
+
+                                        <span data-value="226" class="  ">
+                                        #có màu
+                                    </span>
+
+
+                                        <span data-value="117" class="d-none  ">
+                                        #Cổ Trang
+                                    </span>
+
+
+                                        <span data-value="98" class="d-none  ">
+                                        #Comedy
+                                    </span>
+
+
+                                        <span data-value="39" class="d-none  ">
+                                        #Comic
+                                    </span>
+
+
+                                        <span data-value="40" class="d-none  ">
+                                        #Cooking
+                                    </span>
+
+
+                                        <span data-value="172" class="d-none  ">
+                                        #Crime
+                                    </span>
+
+
+                                        <span data-value="202" class="d-none  ">
+                                        #Cross-dressing
+                                    </span>
+
+
+                                        <span data-value="241" class="d-none  ">
+                                        #Crossdress
+                                    </span>
+
+
+                                        <span data-value="168" class="d-none  ">
+                                        #Crossdressing
+                                    </span>
+
+
+                                        <span data-value="153" class="d-none  ">
+                                        #Cưới Trước Yêu Sau
+                                    </span>
+
+
+                                        <span data-value="184" class="d-none  ">
+                                        #Delinquents
+                                    </span>
+
+
+                                        <span data-value="116" class="d-none  ">
+                                        #Demons
+                                    </span>
+
+
+                                        <span data-value="219" class="d-none  ">
+                                        #Detective
+                                    </span>
+
+
+                                        <span data-value="52" class="d-none  ">
+                                        #Doujinshi
+                                    </span>
+
+
+                                        <span data-value="102" class="d-none  ">
+                                        #Drama
+                                    </span>
+
+
+                                        <span data-value="35" class="d-none  ">
+                                        #Đam Mỹ
+                                    </span>
+
+
+                                        <span data-value="200" class="d-none  ">
+                                        #Đang cập nhật
+                                    </span>
+
+
+                                        <span data-value="208" class="d-none  ">
+                                        #đang tiến hành
+                                    </span>
+
+
+                                        <span data-value="119" class="d-none  ">
+                                        #độc Chiếm
+                                    </span>
+
+
+                                        <span data-value="192" class="d-none  ">
+                                        #đời thường
+                                    </span>
+
+
+                                        <span data-value="31" class="d-none tag-green ">
+                                        #Ecchi
+                                    </span>
+
+
+                                        <span data-value="93" class="d-none  ">
+                                        #Fantasy
+                                    </span>
+
+
+                                        <span data-value="227" class="d-none  ">
+                                        #Full Color
+                                    </span>
+
+
+                                        <span data-value="105" class="d-none  ">
+                                        #Gender Bender
+                                    </span>
+
+
+                                        <span data-value="164" class="d-none  ">
+                                        #Ghosts
+                                    </span>
+
+
+                                        <span data-value="159" class="d-none  ">
+                                        #Giả Tưởng
+                                    </span>
+
+
+                                        <span data-value="242" class="d-none  ">
+                                        #Girllove
+                                    </span>
+
+
+                                        <span data-value="201" class="d-none  ">
+                                        #Glasses
+                                    </span>
+
+
+                                        <span data-value="176" class="d-none  tag-red">
+                                        #Gore
+                                    </span>
+
+
+                                        <span data-value="185" class="d-none  ">
+                                        #Gyaru
+                                    </span>
+
+
+                                        <span data-value="224" class="d-none  ">
+                                        #Hài Hước
+                                    </span>
+
+
+                                        <span data-value="238" class="d-none  ">
+                                        #HangTruyen
+                                    </span>
+
+
+                                        <span data-value="205" class="d-none  ">
+                                        #Hành Động
+                                    </span>
+
+
+                                        <span data-value="110" class="d-none  ">
+                                        #Harem
+                                    </span>
+
+
+                                        <span data-value="152" class="d-none  ">
+                                        #Hệ Thống
+                                    </span>
+
+
+                                        <span data-value="203" class="d-none  ">
+                                        #Height Gap
+                                    </span>
+
+
+                                        <span data-value="124" class="d-none  ">
+                                        #Hiện Đại
+                                    </span>
+
+
+                                        <span data-value="25" class="d-none  ">
+                                        #Historical
+                                    </span>
+
+
+                                        <span data-value="139" class="d-none  ">
+                                        #Hoàng Gia
+                                    </span>
+
+
+                                        <span data-value="181" class="d-none  ">
+                                        #Hoạt Hình
+                                    </span>
+
+
+                                        <span data-value="217" class="d-none  ">
+                                        #học đường
+                                    </span>
+
+
+                                        <span data-value="154" class="d-none  ">
+                                        #Hôn Nhân Hợp Đồng
+                                    </span>
+
+
+                                        <span data-value="24" class="d-none  ">
+                                        #Horror
+                                    </span>
+
+
+                                        <span data-value="187" class="d-none  ">
+                                        #Huyền Bí
+                                    </span>
+
+
+                                        <span data-value="104" class="d-none  ">
+                                        #Huyền Huyễn
+                                    </span>
+
+
+                                        <span data-value="235" class="d-none  ">
+                                        #Introspective
+                                    </span>
+
+
+                                        <span data-value="221" class="d-none  ">
+                                        #Isekai
+                                    </span>
+
+
+                                        <span data-value="30" class="d-none  ">
+                                        #Josei
+                                    </span>
+
+
+                                        <span data-value="213" class="d-none  tag-red">
+                                        #Khỏa Thân
+                                    </span>
+
+
+                                        <span data-value="130" class="d-none  ">
+                                        #Kịch Tích
+                                    </span>
+
+
+                                        <span data-value="231" class="d-none  ">
+                                        #kinh dị
+                                    </span>
+
+
+                                        <span data-value="180" class="d-none  ">
+                                        #Lãng Mạng
+                                    </span>
+
+
+                                        <span data-value="209" class="d-none  ">
+                                        #lịch sử
+                                    </span>
+
+
+                                        <span data-value="50" class="d-none  ">
+                                        #Live action
+                                    </span>
+
+
+                                        <span data-value="188" class="d-none  ">
+                                        #Mafia
+                                    </span>
+
+
+                                        <span data-value="220" class="d-none  ">
+                                        #Magic
+                                    </span>
+
+
+                                        <span data-value="194" class="d-none  ">
+                                        #Magical Girls
+                                    </span>
+
+
+                                        <span data-value="10" class="d-none  ">
+                                        #Martial Arts
+                                    </span>
+
+
+                                        <span data-value="33" class="d-none  tag-yellow">
+                                        #Mature
+                                    </span>
+
+
+                                        <span data-value="49" class="d-none  ">
+                                        #Mecha
+                                    </span>
+
+
+                                        <span data-value="216" class="d-none  ">
+                                        #monster girls
+                                    </span>
+
+
+                                        <span data-value="182" class="d-none  ">
+                                        #Monsters
+                                    </span>
+
+
+                                        <span data-value="190" class="d-none  ">
+                                        #Murim
+                                    </span>
+
+
+                                        <span data-value="173" class="d-none  ">
+                                        #Music
+                                    </span>
+
+
+                                        <span data-value="4" class="d-none  ">
+                                        #Mystery
+                                    </span>
+
+
+                                        <span data-value="18" class="d-none  ">
+                                        #Ngôn Tình
+                                    </span>
+
+
+                                        <span data-value="125" class="d-none  ">
+                                        #Ngọt
+                                    </span>
+
+
+                                        <span data-value="120" class="d-none  ">
+                                        #Ngọt Sủng
+                                    </span>
+
+
+                                        <span data-value="177" class="d-none  ">
+                                        #Ninja
+                                    </span>
+
+
+                                        <span data-value="210" class="d-none  ">
+                                        #nsfw
+                                    </span>
+
+
+                                        <span data-value="211" class="d-none  ">
+                                        #NTR
+                                    </span>
+
+
+                                        <span data-value="133" class="d-none  ">
+                                        #Nữ Cường
+                                    </span>
+
+
+                                        <span data-value="179" class="d-none  ">
+                                        #Nữ Phụ ác độc
+                                    </span>
+
+
+                                        <span data-value="34" class="d-none  ">
+                                        #One shot
+                                    </span>
+
+
+                                        <span data-value="225" class="d-none  ">
+                                        #oneshot
+                                    </span>
+
+
+                                        <span data-value="141" class="d-none  ">
+                                        #Phản Diện
+                                    </span>
+
+
+                                        <span data-value="157" class="d-none  ">
+                                        #Phép Thuật
+                                    </span>
+
+
+                                        <span data-value="207" class="d-none  ">
+                                        #Phiêu Lưu
+                                    </span>
+
+
+                                        <span data-value="228" class="d-none  ">
+                                        #Prostitution
+                                    </span>
+
+
+                                        <span data-value="26" class="d-none  ">
+                                        #Psychological
+                                    </span>
+
+
+                                        <span data-value="150" class="d-none  ">
+                                        #Reverse harem
+                                    </span>
+
+
+                                        <span data-value="101" class="d-none  ">
+                                        #Romance
+                                    </span>
+
+
+                                        <span data-value="195" class="d-none  ">
+                                        #romcom
+                                    </span>
+
+
+                                        <span data-value="236" class="d-none  ">
+                                        #Roommates
+                                    </span>
+
+
+                                        <span data-value="28" class="d-none  ">
+                                        #School Life
+                                    </span>
+
+
+                                        <span data-value="5" class="d-none  ">
+                                        #Sci-fi
+                                    </span>
+
+
+                                        <span data-value="6" class="d-none  ">
+                                        #Seinen
+                                    </span>
+
+
+                                        <span data-value="175" class="d-none  tag-red">
+                                        #Sexual Violence
+                                    </span>
+
+
+                                        <span data-value="23" class="d-none  ">
+                                        #Shoujo
+                                    </span>
+
+
+                                        <span data-value="230" class="d-none  ">
+                                        #Shoujo Ai
+                                    </span>
+
+
+                                        <span data-value="103" class="d-none  ">
+                                        #Shounen
+                                    </span>
+
+
+                                        <span data-value="229" class="d-none  ">
+                                        #Shounen Ai
+                                    </span>
+
+
+                                        <span data-value="186" class="d-none  ">
+                                        #Siêu Nhiên
+                                    </span>
+
+
+                                        <span data-value="14" class="d-none  ">
+                                        #Slice of Life
+                                    </span>
+
+
+                                        <span data-value="41" class="d-none  ">
+                                        #Smut
+                                    </span>
+
+
+                                        <span data-value="45" class="d-none tag-green ">
+                                        #Soft Yaoi
+                                    </span>
+
+
+                                        <span data-value="32" class="d-none tag-green ">
+                                        #Soft Yuri
+                                    </span>
+
+
+                                        <span data-value="38" class="d-none  ">
+                                        #Sports
+                                    </span>
+
+
+                                        <span data-value="128" class="d-none  ">
+                                        #Sư Tôn
+                                    </span>
+
+
+                                        <span data-value="127" class="d-none  ">
+                                        #Sủng
+                                    </span>
+
+
+                                        <span data-value="193" class="d-none  ">
+                                        #Superhero
+                                    </span>
+
+
+                                        <span data-value="7" class="d-none  ">
+                                        #Supernatural
+                                    </span>
+
+
+                                        <span data-value="144" class="d-none  ">
+                                        #Survival
+                                    </span>
+
+
+                                        <span data-value="233" class="d-none  ">
+                                        #tâm lý
+                                    </span>
+
+
+                                        <span data-value="56" class="d-none  ">
+                                        #Tạp Chí Truyện Tranh
+                                    </span>
+
+
+                                        <span data-value="47" class="d-none  ">
+                                        #Thiếu Nhi
+                                    </span>
+
+
+                                        <span data-value="158" class="d-none  ">
+                                        #Thriller
+                                    </span>
+
+
+                                        <span data-value="223" class="d-none  ">
+                                        #Tình Cảm
+                                    </span>
+
+
+                                        <span data-value="212" class="d-none  tag-red">
+                                        #tình dục
+                                    </span>
+
+
+                                        <span data-value="138" class="d-none  ">
+                                        #Tổng Tài
+                                    </span>
+
+
+                                        <span data-value="111" class="d-none  ">
+                                        #Tragedy
+                                    </span>
+
+
+                                        <span data-value="42" class="d-none  ">
+                                        #Trinh Thám
+                                    </span>
+
+
+                                        <span data-value="199" class="d-none  ">
+                                        #Trọng Sinh
+                                    </span>
+
+
+                                        <span data-value="206" class="d-none  ">
+                                        #Trùng Sinh
+                                    </span>
+
+
+                                        <span data-value="244" class="d-none  ">
+                                        #Truyện Bản Quyền
+                                    </span>
+
+
+                                        <span data-value="94" class="d-none  ">
+                                        #Truyện Màu
+                                    </span>
+
+
+                                        <span data-value="54" class="d-none  ">
+                                        #Truyện Scan
+                                    </span>
+
+
+                                        <span data-value="196" class="d-none  ">
+                                        #Tsundere
+                                    </span>
+
+
+                                        <span data-value="243" class="d-none  ">
+                                        #Tu Tiên
+                                    </span>
+
+
+                                        <span data-value="165" class="d-none  ">
+                                        #Vampires
+                                    </span>
+
+
+                                        <span data-value="155" class="d-none  ">
+                                        #Văn Phòng
+                                    </span>
+
+
+                                        <span data-value="171" class="d-none  ">
+                                        #Video Games
+                                    </span>
+
+
+                                        <span data-value="55" class="d-none  ">
+                                        #Việt Nam
+                                    </span>
+
+
+                                        <span data-value="189" class="d-none  ">
+                                        #Villainess
+                                    </span>
+
+
+                                        <span data-value="191" class="d-none  ">
+                                        #Võ Thuật
+                                    </span>
+
+
+                                        <span data-value="215" class="d-none  ">
+                                        #web comic
+                                    </span>
+
+
+                                        <span data-value="22" class="d-none  ">
+                                        #Webtoon
+                                    </span>
+
+
+                                        <span data-value="204" class="d-none  ">
+                                        #Witch
+                                    </span>
+
+
+                                        <span data-value="100" class="d-none  ">
+                                        #Xuyên Không
+                                    </span>
+
+
+                                        <span data-value="156" class="d-none  ">
+                                        #Xuyên Nhanh
+                                    </span>
+
+
+                                        <span data-value="122" class="d-none  ">
+                                        #Xuyên Sách
+                                    </span>
+
+
+                                        <span data-value="222" class="d-none  tag-yellow">
+                                        #Yaoi
+                                    </span>
+
+
+                                        <span data-value="107" class="d-none  tag-yellow">
+                                        #Yuri
+                                    </span>
+
+
+                                        <span data-value="174" class="d-none  ">
+                                        #Zombies
+                                    </span>
+
+                                    </div>
+                                    <a href="" id="view-all-tags" class="view-all mt-2 d-inline-block">Xem tất
+                                        cả</a>
+                                </div>
+                                <a class="btn btn-filter" href="#">
+                                    <span>Tìm kiếm</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="group-title">
+                            <div class="only-title">
+                                <h1 class="m-title title">Kết quả tìm kiếm</h1>
+
+                                <h2 class="sub">Kết quả được lọc theo mong muốn của bạn</h2>
+                                </h3>
+
+                            </div>
+
+                            <span>Có <strong class="color">14374</strong> kết quả liên quan</span>
+                        </div>
+
+
+                        <div class="search-result">
+                            <div class="row">
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="Tuyệt Thế Võ Thần" href="/truyen-tranh/tuyet-the-vo-than">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/fast/0x300/oss.cdnfastest.com/90htr/posters/fe/f3/tuyet-the-vo-than.png" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/fast/0x300/oss.cdnfastest.com/90htr/posters/fe/f3/tuyet-the-vo-than.png" alt="Tuyệt Thế Võ Thần" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/tuyet-the-vo-than">Tuyệt Thế Võ Thần</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 84.00000000000001%;"></span>
+                                                    </span>
+                                                <span>4.2</span>
+                                            </div>
+
+                                            <span class="num-view">10.24M lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165812"
+                                                   href="/truyen-tranh/tuyet-the-vo-than/chapter-1079"
+                                                   title="Chapter #1079" rel="">
+                                                    Chapter #1079<span>2 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2165523"
+                                                   href="/truyen-tranh/tuyet-the-vo-than/chapter-1078"
+                                                   title="Chapter #1078" rel="">
+                                                    Chapter #1078<span>5 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="Võ Luyện Đỉnh Phong" href="/truyen-tranh/vo-luyen-dinh-phong">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/fast/0x300/oss.cdnfastest.com/90htr/posters/c8/1e/vo-luyen-dinh-phong.png" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/fast/0x300/oss.cdnfastest.com/90htr/posters/c8/1e/vo-luyen-dinh-phong.png" alt="Võ Luyện Đỉnh Phong" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/vo-luyen-dinh-phong">Võ Luyện Đỉnh Phong</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 65.99999999999999%;"></span>
+                                                    </span>
+                                                <span>3.3</span>
+                                            </div>
+
+                                            <span class="num-view">66.4M lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165811"
+                                                   href="/truyen-tranh/vo-luyen-dinh-phong/chapter-3855"
+                                                   title="Chapter #3855" rel="">
+                                                    Chapter #3855<span>2 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2164957"
+                                                   href="/truyen-tranh/vo-luyen-dinh-phong/chapter-3854"
+                                                   title="Chapter #3854" rel="">
+                                                    Chapter #3854<span>8 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="The Fragrant Flower Blooms With Dignity - Kaoru Hana Wa Rin To Saku"
+                                           href="/truyen-tranh/the-fragrant-flower-blooms-with-dignity-kaoru-hana-wa-rin-to-saku">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/90htr/posters/15/17/the-fragrant-flower-blooms-with-dignity-kaoru-hana-wa-rin-to-saku.png" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/90htr/posters/15/17/the-fragrant-flower-blooms-with-dignity-kaoru-hana-wa-rin-to-saku.png" alt="The Fragrant Flower Blooms With Dignity - Kaoru Hana Wa Rin To Saku" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a
+                                                    href="/truyen-tranh/the-fragrant-flower-blooms-with-dignity-kaoru-hana-wa-rin-to-saku">The
+                                                Fragrant Flower Blooms With Dignity - Kaoru Hana Wa Rin To Saku</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 76%;"></span>
+                                                    </span>
+                                                <span>3.8</span>
+                                            </div>
+
+                                            <span class="num-view">249.63K lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165810"
+                                                   href="/truyen-tranh/the-fragrant-flower-blooms-with-dignity-kaoru-hana-wa-rin-to-saku/chapter-169"
+                                                   title="Chapter #169" rel="">
+                                                    Chapter #169<span>2 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2165809"
+                                                   href="/truyen-tranh/the-fragrant-flower-blooms-with-dignity-kaoru-hana-wa-rin-to-saku/chapter-168"
+                                                   title="Chapter #168" rel="">
+                                                    Chapter #168<span>2 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="Đúng Như Hàn Quang Gặp Nắng Gắt"
+                                           href="/truyen-tranh/dung-nhu-han-quang-gap-nang-gat">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/fast/0x300/oss.cdnfastest.com/90htr/posters/c4/ba/dung-nhu-han-quang-gap-nang-gat.png" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/fast/0x300/oss.cdnfastest.com/90htr/posters/c4/ba/dung-nhu-han-quang-gap-nang-gat.png" alt="Đúng Như Hàn Quang Gặp Nắng Gắt" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/dung-nhu-han-quang-gap-nang-gat">Đúng Như Hàn
+                                                Quang Gặp Nắng Gắt</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 98.00000000000001%;"></span>
+                                                    </span>
+                                                <span>4.9</span>
+                                            </div>
+
+                                            <span class="num-view">14.2M lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165806"
+                                                   href="/truyen-tranh/dung-nhu-han-quang-gap-nang-gat/chapter-575"
+                                                   title="Chapter #575" rel="">
+                                                    Chapter #575<span>2 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2164497"
+                                                   href="/truyen-tranh/dung-nhu-han-quang-gap-nang-gat/chapter-574"
+                                                   title="Chapter #574" rel="">
+                                                    Chapter #574<span>12 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="Chưởng Môn Khiêm Tốn Chút"
+                                           href="/truyen-tranh/chuong-mon-khiem-ton-chut">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/90htr/posters/64/63/chuong-mon-khiem-ton-chut.png" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/90htr/posters/64/63/chuong-mon-khiem-ton-chut.png" alt="Chưởng Môn Khiêm Tốn Chút" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/chuong-mon-khiem-ton-chut">Chưởng Môn Khiêm Tốn
+                                                Chút</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 42.00000000000001%;"></span>
+                                                    </span>
+                                                <span>2.1</span>
+                                            </div>
+
+                                            <span class="num-view">3.08M lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165805"
+                                                   href="/truyen-tranh/chuong-mon-khiem-ton-chut/chapter-576"
+                                                   title="Chapter #576" rel="">
+                                                    Chapter #576<span>2 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2165512"
+                                                   href="/truyen-tranh/chuong-mon-khiem-ton-chut/chapter-575"
+                                                   title="Chapter #575" rel="">
+                                                    Chapter #575<span>5 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="Mỗi Tuần Ta Có Một Nghề Nghiệp Mới"
+                                           href="/truyen-tranh/moi-tuan-ta-co-mot-nghe-nghiep-moi">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/90htr/posters/2e/fe/moi-tuan-ta-co-mot-nghe-nghiep-moi.jpg" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/90htr/posters/2e/fe/moi-tuan-ta-co-mot-nghe-nghiep-moi.jpg" alt="Mỗi Tuần Ta Có Một Nghề Nghiệp Mới" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/moi-tuan-ta-co-mot-nghe-nghiep-moi">Mỗi Tuần Ta
+                                                Có Một Nghề Nghiệp Mới</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 96%;"></span>
+                                                    </span>
+                                                <span>4.8</span>
+                                            </div>
+
+                                            <span class="num-view">55.57K lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165804"
+                                                   href="/truyen-tranh/moi-tuan-ta-co-mot-nghe-nghiep-moi/chapter-851"
+                                                   title="Chapter #851" rel="">
+                                                    Chapter #851<span>2 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2165511"
+                                                   href="/truyen-tranh/moi-tuan-ta-co-mot-nghe-nghiep-moi/chapter-850"
+                                                   title="Chapter #850" rel="">
+                                                    Chapter #850<span>5 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="One Punch Man" href="/truyen-tranh/one-punch-man">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/90htr/posters/2024.11.13/eFBaGhXD2T5EBvM4el.jpg" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/90htr/posters/2024.11.13/eFBaGhXD2T5EBvM4el.jpg" alt="One Punch Man" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/one-punch-man">One Punch Man</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 100%;"></span>
+                                                    </span>
+                                                <span>5</span>
+                                            </div>
+
+                                            <span class="num-view">177.02K lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165803" href="/truyen-tranh/one-punch-man/chapter-291"
+                                                   title="Chapter 291" rel="">
+                                                    Chapter 291<span>2 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2163892" href="/truyen-tranh/one-punch-man/chapter-290"
+                                                   title="Chapter 290" rel="">
+                                                    Chapter 290<span>16 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="Blue Lock" href="/truyen-tranh/blue-lock">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/90htr/posters/5f/cf/blue-lock.jpg" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/90htr/posters/5f/cf/blue-lock.jpg" alt="Blue Lock" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/blue-lock">Blue Lock</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 62%;"></span>
+                                                    </span>
+                                                <span>3.1</span>
+                                            </div>
+
+                                            <span class="num-view">50.78K lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165802" href="/truyen-tranh/blue-lock/chap-326"
+                                                   title="Chapter 326" rel="">
+                                                    Chapter 326<span>3 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2164505" href="/truyen-tranh/blue-lock/chap-325"
+                                                   title="Chapter 325" rel="">
+                                                    Chapter 325<span>10 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="Hoán Đổi Diệu Kỳ" href="/truyen-tranh/hoan-doi-dieu-ky">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/90htr/posters/01/c5/hoan-doi-dieu-ky.png" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/90htr/posters/01/c5/hoan-doi-dieu-ky.png" alt="Hoán Đổi Diệu Kỳ" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/hoan-doi-dieu-ky">Hoán Đổi Diệu Kỳ</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 68%;"></span>
+                                                    </span>
+                                                <span>3.4</span>
+                                            </div>
+
+                                            <span class="num-view">45.12K lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2164906"
+                                                   href="/truyen-tranh/hoan-doi-dieu-ky/chapter-579"
+                                                   title="Chapter #579" rel="">
+                                                    Chapter #579<span>4 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2157569"
+                                                   href="/truyen-tranh/hoan-doi-dieu-ky/chapter-578"
+                                                   title="Chapter #578" rel="">
+                                                    Chapter #578<span>23 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-post col-md-6">
+
+                                    <div class="p-thumb flex-shrink-0">
+                                        <a title="Thám Tử Conan" href="/truyen-tranh/tham-tu-conan">
+                                                <span class="img-poster">
+            <img class="lzl" data-src="https://cdn.truyennganhay.net/90htr/posters/2025.08.15/ryTKdheL0wC0qPbaI1.jpg" rel="nofollow"
+                 data-original="https://cdn.truyennganhay.net/90htr/posters/2025.08.15/ryTKdheL0wC0qPbaI1.jpg" alt="Thám Tử Conan" src="/images/pre-load1.png" width="100%" height="100%">
+        </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="p-content flex-grow-1">
+                                        <h3 class="m-name">
+                                            <a href="/truyen-tranh/tham-tu-conan">Thám Tử Conan</a>
+                                        </h3>
+                                        <div class="group-star">
+                                            <div class="m-star">
+                                                    <span class="star-rating">
+        <span style="width: 68%;"></span>
+                                                    </span>
+                                                <span>3.4</span>
+                                            </div>
+
+                                            <span class="num-view">66.46K lượt xem</span>
+
+                                        </div>
+                                        <ul class="list-chaps">
+
+                                            <li class="chapter">
+                                                <a data-id="2165742" href="/truyen-tranh/tham-tu-conan/chapter-1153"
+                                                   title="Chapter 1153" rel="">
+                                                    Chapter 1153<span>5 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="chapter">
+                                                <a data-id="2165741" href="/truyen-tranh/tham-tu-conan/chapter-1152"
+                                                   title="Chapter 1152" rel="">
+                                                    Chapter 1152<span>5 ngày trước</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <ul class="pagination" data-count-page="1438">
+
+
+                                <li class="active" data-page="1">
+                                    <a href="#?page=1" data-page="1">1</a>
+                                </li>
+
+                                <li class="false" data-page="2">
+                                    <a href="#?page=2" data-page="2">2</a>
+                                </li>
+
+                                <li class="false" data-page="3">
+                                    <a href="#?page=3" data-page="3">3</a>
+                                </li>
+
+                                <li class="false" data-page="4">
+                                    <a href="#?page=4" data-page="4">4</a>
+                                </li>
+
+                                <li class="false" data-page="5">
+                                    <a href="#?page=5" data-page="5">5</a>
+                                </li>
+
+
+                                <li data-page="0">
+                                    <a class="next-page" href="#?page=2" title="Chuyển đến trang 2" data-page="2">
+                                        <i class="icon-arrow-right"></i>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            async function searchAdvance(keyword, page, categoryIds, genreIds, orderBy) {
+                const response = await $.ajax({
+                    type: 'POST',
+                    xhrFields: { withCredentials: true },
+                    url: `https://api.truyennganhay.net/mangas/search-advance`,
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        keyword,
+                        page,
+                        categoryIds,
+                        genreIds,
+                        orderBy,
+                    }),
+                    dataType: 'json',
+                }).catch(() => {
+                    return null;
+                });
+
+                if (response && response.status === 200) {
+                    return response.data;
+                }
+
+                return null;
+            }
+
+        </script>
+
+        <script src="/js/custom/search-advanced/index.js"></script>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <div class="f-left">
+                        <a href="/" class="logo">
+                            <img class="" alt="Truyện tranh online mới nhất" src="/images/PhantomLimo/logo-dark.png" width="146" />
+                        </a>
+                        <p class="mt-3"><b>Truyện tranh</b> miễn phí, kho truyện tranh nhiều thể loại được yêu
+                            thích, truyện tranh manga, manhua, manhwa</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+
+                    <p><a target="_blank" class="link" href="https://hillside-cd.co.uk/">nettruyen</a> <a
+                            target="_blank" class="link" href="https://bet88.gifts/">https://bet88.gifts/</a> <a
+                            target="" class="link" href="https://sv368.direct/">sv 368</a> <a target="" class="link"
+                                                                                              href="https://nn88vn.net/">NN88</a> <a target="" class="link"
+                                                                                                                                     href="https://k88.tech/">K88</a> <a target="" class="link"
+                                                                                                                                                                         href="https://search.br.com/">hello88</a> <a target="" class="link"
+                                                                                                                                                                                                                      href="https://tv88.io/">TV88</a> <a target="" class="link"
+                                                                                                                                                                                                                                                          href="https://latex.uk.com/">888new</a> <a target="" class="link"
+                                                                                                                                                                                                                                                                                                     href="https://www.ufa222.digital/">UFA222</a> <a target="" class="link"
+                                                                                                                                                                                                                                                                                                                                                      href="https://pentrestables.co.uk">truyenqq</a> <a target="_blank" class="link"
+                                                                                                                                                                                                                                                                                                                                                                                                         href="https://jun88d.one/">https://jun88d.one/</a> <a target="_blank" class="link"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                               href="https://inject.us.com/">https://inject.us.com/</a><br>Telegram:@fbhailam</p>
+
+                </div>
+
+            </div>
+            <p class="copyright text-center">Copyright © 2024, All rights reserved.</p>
+        </div>
+        <span id="back-totop" style="display: inline;">
+
+    </span>
+    </footer>
+
+
+    <div class="banner-fixed banner-fixed-right">
+        <div class="banner-wrapper">
+            <a href="https://hangtruyen.co" target="_blank">
+                <img
+                        rel="nofollow"
+                        alt="banner"
+                        src="/images/banners/HT_160x800.png"
+                        width="140"
+                />
+            </a>
+            <i class="icon-close-circle"></i>
+        </div>
+    </div>
+
+    <div class="banner-fixed banner-fixed-left">
+        <div class="banner-wrapper">
+            <a href="https://hangtruyen.co" target="_blank">
+                <img
+                        rel="nofollow"
+                        alt="banner"
+                        src="/images/banners/HT_160x800.png"
+                        width="140" />
+            </a>
+            <i class="icon-close-circle"></i>
+        </div>
+    </div>
+
+    <div class="banner-fixed banner-fixed-bottom off-desktop">
+        <div class="banner-center-content banner-wrapper">
+            <!-- <a href="https://hangtruyen.co" target="_blank">
+        <img
+            rel="nofollow"
+            alt="banner"
+            src="/images/banners/HT_1330x100.png"
+        />
+    </a> -->
+            <a href="https://hangtruyen.co" target="_blank">
+                <img
+                        rel="nofollow"
+                        alt="banner"
+                        src="https://qph.cf2.quoracdn.net/main-qimg-479a10def3783ad3f8ebad7c03c4d3aa"
+                />
+            </a>
+            <a href="https://hangtruyen.co" target="_blank">
+                <img
+                        rel="nofollow"
+                        alt="banner"
+                        src="https://qph.cf2.quoracdn.net/main-qimg-cfa273eb50c0c911e1bd65a3e936ad42"
+                />
+            </a>
+            <a href="https://hangtruyen.co" target="_blank">
+                <img
+                        rel="nofollow"
+                        alt="banner"
+                        src="https://qph.cf2.quoracdn.net/main-qimg-7634f914c79f9697748b21614e350374"
+                />
+            </a>
+            <a href="https://hangtruyen.co" target="_blank">
+                <img
+                        rel="nofollow"
+                        alt="banner"
+                        src="https://qph.cf2.quoracdn.net/main-qimg-a0b36faa124794f659afccf005017bec"
+                />
+            </a>
+            <i class="icon-close-circle"></i>
+        </div>
+    </div>
+
+
+    <script>
+        const bannerFixedRight = document.querySelector('.banner-fixed-right');
+        const bannerFixedLeft = document.querySelector('.banner-fixed-left');
+        const bannerFixedBottom = document.querySelector('.banner-fixed-bottom');
+        const closeBanners = document.querySelectorAll('.banner-wrapper .icon-close-circle');
+
+        closeBanners?.forEach(banner => {
+            banner.addEventListener('click', () => {
+                banner.parentElement.style.display = 'none';
+            });
+        });
+    </script>
+
+    <div href="javascript:void(0)" id="back-to-top" style="display: flex; cursor: pointer;">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<script src="/js/custom.js?v=1.05"></script>
+</body>
+
+</html>

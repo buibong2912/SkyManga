@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "bQ4zpa7Hwtc=",
+  "success": true,
+  "projectFilePath": "/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Api/SkyHighManga.Api.csproj",
+  "expectedPackageFiles": [
+    "/Users/buibong/.nuget/packages/microsoft.aspnetcore.openapi/9.0.6/microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512",
+    "/Users/buibong/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

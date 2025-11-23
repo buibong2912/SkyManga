@@ -1,0 +1,11 @@
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/bin/Debug/net9.0/SkyHighManga.Domain.deps.json
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/bin/Debug/net9.0/SkyHighManga.Domain.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/bin/Debug/net9.0/SkyHighManga.Domain.pdb
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/obj/Debug/net9.0/SkyHighManga.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/obj/Debug/net9.0/SkyHighManga.Domain.AssemblyInfoInputs.cache
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/obj/Debug/net9.0/SkyHighManga.Domain.AssemblyInfo.cs
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/obj/Debug/net9.0/SkyHighManga.Domain.csproj.CoreCompileInputs.cache
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/obj/Debug/net9.0/SkyHighManga.Domain.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/obj/Debug/net9.0/refint/SkyHighManga.Domain.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/obj/Debug/net9.0/SkyHighManga.Domain.pdb
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Domain/obj/Debug/net9.0/ref/SkyHighManga.Domain.dll

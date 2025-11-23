@@ -1,0 +1,15 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=220e08dd_002D3f60_002D4731_002D804c_002Dad7440ff218f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="HtmlAgilityPackParserTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Services.HtmlAgilityPackParserTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Crawlers.NettruyenCrawlerIntegrationTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Crawlers.NettruyenCrawlerQuickTest.TestSelector_WithRealHTML_ShouldFindItems&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Crawlers.NettruyenCrawlerDetailTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Crawlers.NettruyenCrawlerChapterTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Crawlers.NettruyenCrawlerE2ETests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Crawlers.NettruyenCrawlerPaginationTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Crawlers.NettruyenCrawlerFullCrawlTests.FullCrawl_AllSearchResults_ShouldCrawlAllPages&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Services.CrawlJobServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Services.CrawlJobServiceRealTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
