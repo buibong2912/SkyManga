@@ -1,0 +1,29 @@
+# Example override file để enable API service
+# Copy file này thành docker-compose.override.yml để chạy API trong Docker
+
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: skyhighmanga-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=sky_manga;Username=skyhighmanga;Password=skyhighmanga123
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=skyhighmanga
+      - RabbitMQ__Password=skyhighmanga123
+    ports:
+      - "5000:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - skyhighmanga-network
+    restart: unless-stopped
+

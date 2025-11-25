@@ -1,8 +1,8 @@
 using SkyHighManga.Application.Common.Models;
 using SkyHighManga.Application.Interfaces.Services;
 using SkyHighManga.Domain.Entities;
-using SkyHighManga.Infrastructure.Crawlers;
-using SkyHighManga.Infrastructure.Services;
+using SkyHighManga.Infastructure.Crawlers;
+using SkyHighManga.Infastructure.Services;
 
 namespace SkyHighManga.UnitTest.Crawlers;
 
@@ -441,7 +441,7 @@ public class NettruyenCrawlerChapterTests
         var context = new CrawlerContext
         {
             Source = _source,
-            StartUrl = $"{_source.BaseUrl}/truyen-tranh/one-piece/chapter-1165",
+            StartUrl = $"{_source.BaseUrl}/truyen-tranh/one-piece/chapter-1164",
             OnLog = (msg, level) => Console.WriteLine($"  [{level}] {msg}"),
             OnProgress = (processed, total) => Console.WriteLine($"  Progress: {processed}/{total}")
         };

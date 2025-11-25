@@ -4,10 +4,26 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6"/>
+        <PackageReference Include="MediatR" Version="13.1.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="10.0.1" />
+        <PackageReference Include="MassTransit" Version="8.3.0" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.0" />
+        <PackageReference Include="Hangfire.Core" Version="1.8.17" />
+        <PackageReference Include="Hangfire.AspNetCore" Version="1.8.17" />
+        <PackageReference Include="Hangfire.PostgreSql" Version="1.20.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SkyHighManga.Infastructure\SkyHighManga.Infastructure.csproj" />
     </ItemGroup>
 
 </Project>

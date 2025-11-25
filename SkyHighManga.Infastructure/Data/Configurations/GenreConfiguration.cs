@@ -19,7 +19,7 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
             .HasMaxLength(100);
 
         builder.Property(g => g.Description)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(g => g.Slug)
             .HasMaxLength(100);
@@ -45,7 +45,7 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
             .IsUnique();
         builder.HasIndex(g => g.Slug)
             .IsUnique()
-            .HasFilter("[Slug] IS NOT NULL");
+            .HasFilter("\"Slug\" IS NOT NULL");
         builder.HasIndex(g => g.IsActive);
     }
 }

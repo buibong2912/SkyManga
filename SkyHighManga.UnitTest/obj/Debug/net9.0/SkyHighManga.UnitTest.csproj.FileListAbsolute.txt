@@ -14,6 +14,7 @@
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.InMemory.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Relational.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.Extensions.Caching.Abstractions.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.Extensions.Caching.Memory.dll
@@ -33,6 +34,8 @@
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.VisualStudio.TestPlatform.Common.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/testhost.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Newtonsoft.Json.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Npgsql.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/nunit.framework.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/nunit.framework.legacy.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll
@@ -111,10 +114,16 @@
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/SkyHighManga.UnitTest.AssemblyInfoInputs.cache
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/SkyHighManga.UnitTest.AssemblyInfo.cs
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/SkyHighManga.UnitTest.csproj.CoreCompileInputs.cache
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/SkyHighManga.UnitTest.sourcelink.json
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/SkyHighM.05510089.Up2Date
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/SkyHighManga.UnitTest.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/refint/SkyHighManga.UnitTest.dll
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/SkyHighManga.UnitTest.pdb
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/SkyHighManga.UnitTest.genruntimeconfig.cache
 /Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/obj/Debug/net9.0/ref/SkyHighManga.UnitTest.dll
-/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.InMemory.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/MediatR.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/MediatR.Contracts.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.UnitTest/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll

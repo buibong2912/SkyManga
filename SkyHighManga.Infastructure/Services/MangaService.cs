@@ -23,13 +23,16 @@ public class MangaService : IMangaService
         Guid sourceId,
         CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrEmpty(crawlData.SourceMangaId))
+        await SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.WaitAsync(cancellationToken);
+        try
         {
-            throw new ArgumentException("SourceMangaId không được null hoặc empty", nameof(crawlData));
-        }
+            if (string.IsNullOrEmpty(crawlData.SourceMangaId))
+            {
+                throw new ArgumentException("SourceMangaId không được null hoặc empty", nameof(crawlData));
+            }
 
-        // Tìm manga đã tồn tại
-        var existingManga = await _unitOfWork.Mangas.FindBySourceIdAsync(sourceId, crawlData.SourceMangaId, cancellationToken);
+            // Tìm manga đã tồn tại
+            var existingManga = await _unitOfWork.Mangas.FindBySourceIdAsync(sourceId, crawlData.SourceMangaId, cancellationToken);
 
         if (existingManga != null)
         {
@@ -102,6 +105,14 @@ public class MangaService : IMangaService
         }
 
         await _unitOfWork.Mangas.AddAsync(manga, cancellationToken);
+        
+        // Ensure Source is tracked by context to avoid null reference
+        var source = await _context.Sources.FindAsync(new object[] { sourceId }, cancellationToken);
+        if (source != null)
+        {
+            _context.Entry(source).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+        }
+        
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         // Lưu genres sau khi manga đã được lưu
@@ -130,6 +141,11 @@ public class MangaService : IMangaService
         }
 
         return manga;
+        }
+        finally
+        {
+            SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.Release();
+        }
     }
 
     public async Task<Chapter> SaveOrUpdateChapterAsync(
@@ -137,9 +153,30 @@ public class MangaService : IMangaService
         Guid mangaId,
         CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrEmpty(crawlData.SourceChapterId))
+        await SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.WaitAsync(cancellationToken);
+        try
         {
-            throw new ArgumentException("SourceChapterId không được null hoặc empty", nameof(crawlData));
+            // Generate SourceChapterId nếu chưa có
+            if (string.IsNullOrEmpty(crawlData.SourceChapterId))
+        {
+            if (!string.IsNullOrEmpty(crawlData.ChapterNumber))
+            {
+                crawlData.SourceChapterId = crawlData.ChapterNumber;
+            }
+            else if (crawlData.ChapterIndex.HasValue)
+            {
+                crawlData.SourceChapterId = crawlData.ChapterIndex.Value.ToString();
+            }
+            else if (!string.IsNullOrEmpty(crawlData.SourceUrl))
+            {
+                // Extract từ URL
+                var urlParts = crawlData.SourceUrl.Split('/');
+                crawlData.SourceChapterId = urlParts.LastOrDefault() ?? crawlData.SourceUrl;
+            }
+            else
+            {
+                throw new ArgumentException("SourceChapterId không được null hoặc empty và không thể generate từ dữ liệu có sẵn", nameof(crawlData));
+            }
         }
 
         var existingChapter = await _unitOfWork.Chapters.FindBySourceIdAsync(mangaId, crawlData.SourceChapterId, cancellationToken);
@@ -180,6 +217,11 @@ public class MangaService : IMangaService
         await _unitOfWork.Chapters.AddAsync(chapter, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
         return chapter;
+        }
+        finally
+        {
+            SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.Release();
+        }
     }
 
     public async Task<int> SavePagesAsync(
@@ -187,51 +229,143 @@ public class MangaService : IMangaService
         IEnumerable<string> pageUrls,
         CancellationToken cancellationToken = default)
     {
-        var pageList = pageUrls.ToList();
-        var savedCount = 0;
-
-        for (int i = 0; i < pageList.Count; i++)
+        await SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.WaitAsync(cancellationToken);
+        try
         {
-            var pageUrl = pageList[i];
-            var sourcePageId = ExtractPageIdFromUrl(pageUrl);
-
-            // Kiểm tra page đã tồn tại
-            var exists = await _unitOfWork.Pages.ExistsBySourceIdAsync(chapterId, sourcePageId, cancellationToken);
-            if (exists)
-                continue;
-
-            var page = new Page
+            var pageList = pageUrls.ToList();
+            if (pageList.Count == 0)
             {
-                Id = Guid.NewGuid(),
-                PageNumber = i + 1,
-                ImageUrl = pageUrl,
-                ChapterId = chapterId,
-                SourcePageId = sourcePageId,
-                IsDownloaded = false,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            };
+                return 0;
+            }
 
-            await _unitOfWork.Pages.AddAsync(page, cancellationToken);
-            savedCount++;
+            // Tối ưu: Load tất cả existing pages một lần thay vì query từng page
+            var existingPages = (await _unitOfWork.Pages.GetByChapterIdAsync(chapterId, cancellationToken))
+                .ToList();
+
+            // Tạo dictionary để lookup nhanh theo PageNumber và SourcePageId
+            var pagesByPageNumber = existingPages
+                .Where(p => p.IsActive)
+                .ToDictionary(p => p.PageNumber, p => p);
+            
+            var pagesBySourceId = existingPages
+                .Where(p => p.IsActive && !string.IsNullOrEmpty(p.SourcePageId))
+                .GroupBy(p => p.SourcePageId)
+                .ToDictionary(g => g.Key!, g => g.First());
+
+            var pagesToAdd = new List<Page>();
+            var pagesToUpdate = new List<Page>();
+            var savedCount = 0;
+            var updatedCount = 0;
+
+            for (int i = 0; i < pageList.Count; i++)
+            {
+                var pageUrl = pageList[i];
+                var pageNumber = i + 1;
+                var sourcePageId = ExtractPageIdFromUrl(pageUrl);
+
+                // Kiểm tra page đã tồn tại theo PageNumber (lookup từ dictionary)
+                if (pagesByPageNumber.TryGetValue(pageNumber, out var existingPage))
+                {
+                    // Update page nếu đã tồn tại (có thể URL đã thay đổi)
+                    if (existingPage.ImageUrl != pageUrl || existingPage.SourcePageId != sourcePageId)
+                    {
+                        existingPage.ImageUrl = pageUrl;
+                        existingPage.SourcePageId = sourcePageId;
+                        existingPage.UpdatedAt = DateTime.UtcNow;
+                        pagesToUpdate.Add(existingPage);
+                        updatedCount++;
+                    }
+                    // Nếu không có thay đổi, skip
+                    continue;
+                }
+
+                // Kiểm tra thêm bằng SourcePageId để tránh duplicate (lookup từ dictionary)
+                if (!string.IsNullOrEmpty(sourcePageId) && pagesBySourceId.ContainsKey(sourcePageId))
+                {
+                    continue;
+                }
+
+                // Tạo page mới (sẽ batch add sau)
+                var page = new Page
+                {
+                    Id = Guid.NewGuid(),
+                    PageNumber = pageNumber,
+                    ImageUrl = pageUrl,
+                    ChapterId = chapterId,
+                    SourcePageId = sourcePageId,
+                    IsDownloaded = false,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                };
+
+                pagesToAdd.Add(page);
+                savedCount++;
+            }
+
+            // Batch insert tất cả pages mới
+            if (pagesToAdd.Count > 0)
+            {
+                await _unitOfWork.Pages.AddRangeAsync(pagesToAdd, cancellationToken);
+            }
+
+            // Batch update tất cả pages cần update
+            if (pagesToUpdate.Count > 0)
+            {
+                _unitOfWork.Pages.UpdateRange(pagesToUpdate);
+            }
+
+            // Chỉ save một lần cho tất cả changes
+            if (pagesToAdd.Count > 0 || pagesToUpdate.Count > 0)
+            {
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
+            }
+
+            return savedCount + updatedCount;
         }
-
-        if (savedCount > 0)
+        finally
         {
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
+            SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.Release();
         }
-
-        return savedCount;
     }
 
     public async Task<bool> MangaExistsAsync(Guid sourceId, string sourceMangaId, CancellationToken cancellationToken = default)
     {
-        return await _unitOfWork.Mangas.ExistsBySourceIdAsync(sourceId, sourceMangaId, cancellationToken);
+        await SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.WaitAsync(cancellationToken);
+        try
+        {
+            return await _unitOfWork.Mangas.ExistsBySourceIdAsync(sourceId, sourceMangaId, cancellationToken);
+        }
+        finally
+        {
+            SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.Release();
+        }
     }
 
     public async Task<bool> ChapterExistsAsync(Guid mangaId, string sourceChapterId, CancellationToken cancellationToken = default)
     {
-        return await _unitOfWork.Chapters.ExistsBySourceIdAsync(mangaId, sourceChapterId, cancellationToken);
+        await SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.WaitAsync(cancellationToken);
+        try
+        {
+            return await _unitOfWork.Chapters.ExistsBySourceIdAsync(mangaId, sourceChapterId, cancellationToken);
+        }
+        finally
+        {
+            SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.Release();
+        }
+    }
+
+    public async Task<HashSet<string>> GetExistingChapterIdsAsync(Guid mangaId, IEnumerable<string> sourceChapterIds, CancellationToken cancellationToken = default)
+    {
+        await SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.WaitAsync(cancellationToken);
+        try
+        {
+            return await _unitOfWork.Chapters.GetExistingSourceChapterIdsAsync(mangaId, sourceChapterIds, cancellationToken);
+        }
+        finally
+        {
+            SkyHighManga.Infastructure.Data.DbContextSemaphore.Instance.Release();
+        }
     }
 
     private string ExtractPageIdFromUrl(string url)

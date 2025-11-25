@@ -17,6 +17,7 @@ public class UnitOfWork : IUnitOfWork
         Pages = new PageRepository(context);
         Authors = new AuthorRepository(context);
         Genres = new GenreRepository(context);
+        CrawlJobs = new CrawlJobRepository(context);
     }
 
     public IMangaRepository Mangas { get; }
@@ -24,6 +25,7 @@ public class UnitOfWork : IUnitOfWork
     public IPageRepository Pages { get; }
     public IAuthorRepository Authors { get; }
     public IGenreRepository Genres { get; }
+    public ICrawlJobRepository CrawlJobs { get; }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

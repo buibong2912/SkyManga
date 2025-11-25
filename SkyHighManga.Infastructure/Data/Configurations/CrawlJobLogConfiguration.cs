@@ -16,23 +16,23 @@ public class CrawlJobLogConfiguration : IEntityTypeConfiguration<CrawlJobLog>
         // Properties
         builder.Property(log => log.Message)
             .IsRequired()
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(log => log.Level)
             .IsRequired()
             .HasConversion<int>();
 
         builder.Property(log => log.Exception)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(log => log.StackTrace)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(log => log.Url)
             .HasMaxLength(2000);
 
         builder.Property(log => log.AdditionalData)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(log => log.CreatedAt)
             .IsRequired();

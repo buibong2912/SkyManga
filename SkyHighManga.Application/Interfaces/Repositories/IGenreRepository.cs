@@ -18,3 +18,4 @@ public interface IGenreRepository : IRepository<Genre>
     Task<Genre> FindOrCreateAsync(string name, CancellationToken cancellationToken = default);
 }
 
+

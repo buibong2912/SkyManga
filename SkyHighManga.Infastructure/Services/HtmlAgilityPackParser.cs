@@ -1,7 +1,7 @@
 using HtmlAgilityPack;
 using SkyHighManga.Application.Interfaces.Services;
 
-namespace SkyHighManga.Infrastructure.Services;
+namespace SkyHighManga.Infastructure.Services;
 
 /// <summary>
 /// Implementation của IHtmlParser sử dụng HtmlAgilityPack

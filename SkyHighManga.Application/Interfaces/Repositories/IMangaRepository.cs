@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using SkyHighManga.Domain.Entities;
 
 namespace SkyHighManga.Application.Interfaces.Repositories;
@@ -7,6 +8,11 @@ namespace SkyHighManga.Application.Interfaces.Repositories;
 /// </summary>
 public interface IMangaRepository : IRepository<Manga>
 {
+    /// <summary>
+    /// Lấy IQueryable để có thể query với Include, Where, etc.
+    /// </summary>
+    IQueryable<Manga> GetAll();
+
     /// <summary>
     /// Tìm manga theo SourceMangaId và SourceId
     /// </summary>
@@ -37,4 +43,5 @@ public interface IMangaRepository : IRepository<Manga>
     /// </summary>
     Task<Manga?> GetFullAsync(Guid mangaId, CancellationToken cancellationToken = default);
 }
+
 

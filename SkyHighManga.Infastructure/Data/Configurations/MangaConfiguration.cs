@@ -22,7 +22,7 @@ public class MangaConfiguration : IEntityTypeConfiguration<Manga>
             .HasMaxLength(500);
 
         builder.Property(m => m.Description)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(m => m.CoverImageUrl)
             .HasMaxLength(2000);
@@ -88,7 +88,7 @@ public class MangaConfiguration : IEntityTypeConfiguration<Manga>
         builder.HasIndex(m => m.SourceMangaId);
         builder.HasIndex(m => new { m.SourceId, m.SourceMangaId })
             .IsUnique()
-            .HasFilter("[SourceMangaId] IS NOT NULL");
+            .HasFilter("\"SourceMangaId\" IS NOT NULL");
         builder.HasIndex(m => m.IsActive);
         builder.HasIndex(m => m.Status);
         builder.HasIndex(m => m.CreatedAt);

@@ -1,6 +1,6 @@
 using HtmlAgilityPack;
 
-namespace SkyHighManga.Infrastructure.Services;
+namespace SkyHighManga.Infastructure.Services;
 
 /// <summary>
 /// Helper để convert CSS selector sang XPath cho HtmlAgilityPack

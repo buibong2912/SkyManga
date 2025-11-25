@@ -1,0 +1,22 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  skyhighmanga.api:
+    build:
+      context: "/Users/buibong/RiderProjects/SkyHighManga"
+      dockerfile: "SkyHighManga.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/SkyHighManga.Api.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "skyhighmanga.api:dev"
+    ports: []
+    volumes:
+    - "/Users/buibong/RiderProjects/SkyHighManga/SkyHighManga.Api:/app:rw"
+    - "/Users/buibong/RiderProjects/SkyHighManga:/src:rw"
+    - "/Users/buibong/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"

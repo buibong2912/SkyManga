@@ -22,7 +22,7 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
             .HasMaxLength(200);
 
         builder.Property(a => a.Bio)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(a => a.ProfileImageUrl)
             .HasMaxLength(2000);

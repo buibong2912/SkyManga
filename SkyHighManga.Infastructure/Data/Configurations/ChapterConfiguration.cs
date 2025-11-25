@@ -62,7 +62,7 @@ public class ChapterConfiguration : IEntityTypeConfiguration<Chapter>
         builder.HasIndex(c => new { c.MangaId, c.ChapterIndex });
         builder.HasIndex(c => new { c.MangaId, c.SourceChapterId })
             .IsUnique()
-            .HasFilter("[SourceChapterId] IS NOT NULL");
+            .HasFilter("\"SourceChapterId\" IS NOT NULL");
         builder.HasIndex(c => c.IsActive);
         builder.HasIndex(c => c.CreatedAt);
         builder.HasIndex(c => c.PublishedAt);

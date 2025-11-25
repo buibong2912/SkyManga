@@ -23,6 +23,11 @@ public interface IChapterRepository : IRepository<Chapter>
     Task<bool> ExistsBySourceIdAsync(Guid mangaId, string sourceChapterId, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Lấy danh sách SourceChapterIds đã tồn tại (batch check để tối ưu)
+    /// </summary>
+    Task<HashSet<string>> GetExistingSourceChapterIdsAsync(Guid mangaId, IEnumerable<string> sourceChapterIds, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Lấy danh sách chapters của một manga
     /// </summary>
     Task<IEnumerable<Chapter>> GetByMangaIdAsync(Guid mangaId, CancellationToken cancellationToken = default);
@@ -37,4 +42,5 @@ public interface IChapterRepository : IRepository<Chapter>
     /// </summary>
     Task<Chapter?> GetWithPagesAsync(Guid chapterId, CancellationToken cancellationToken = default);
 }
+
 

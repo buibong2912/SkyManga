@@ -1,12 +1,13 @@
-using SkyHighManga.Application.Common;
+using SkyHighManga.Infastructure.Data;
 using System.Collections.Concurrent;
 using System.Threading;
+using SkyHighManga.Application.Common;
 using SkyHighManga.Application.Common.Models;
 using SkyHighManga.Application.Interfaces.Crawlers;
 using SkyHighManga.Application.Interfaces.Services;
 using SkyHighManga.Domain.Entities;
 
-namespace SkyHighManga.Infrastructure.Crawlers;
+namespace SkyHighManga.Infastructure.Crawlers;
 
 /// <summary>
 /// Crawler cho Nettruyen (aquastarsleep.co.uk)
@@ -148,7 +149,7 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
 
             var allResults = new ConcurrentBag<MangaCrawlData>();
             int totalPages = 1;
-            int pagesToCrawl = maxPages ?? 1; // Mặc định chỉ crawl trang đầu tiên
+            int pagesToCrawl = 1; // Default, sẽ được cập nhật sau khi parse totalPages
 
             // Crawl trang đầu tiên để lấy thông tin pagination
             var firstPageUrl = baseSearchUrl;
@@ -163,28 +164,54 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
                 if (!string.IsNullOrEmpty(countPageAttr) && int.TryParse(countPageAttr, out var countPage))
                 {
                     totalPages = countPage;
-                    Log(context, $"Tìm thấy {totalPages} trang kết quả", Application.Common.Models.LogLevel.Info);
+                    Log(context, $"✅ Tìm thấy {totalPages} trang kết quả từ pagination", Application.Common.Models.LogLevel.Info);
                 }
+                else
+                {
+                    Log(context, $"⚠️ Không thể parse data-count-page từ pagination. Attribute value: '{countPageAttr}'", Application.Common.Models.LogLevel.Warning);
+                }
+            }
+            else
+            {
+                Log(context, "⚠️ Không tìm thấy pagination element (ul[@class='pagination']). Có thể chỉ có 1 trang hoặc HTML structure khác.", Application.Common.Models.LogLevel.Warning);
+            }
+            
+            // Nếu maxPages = null và totalPages = 1, có thể cần crawl thêm để kiểm tra
+            // Nhưng trước tiên, log để debug
+            if (maxPages == null && totalPages == 1)
+            {
+                Log(context, "⚠️ maxPages = null nhưng totalPages = 1. Có thể chỉ có 1 trang hoặc pagination chưa được parse đúng.", Application.Common.Models.LogLevel.Warning);
             }
 
             // Xác định số trang cần crawl
-            if (maxPages == 0)
+            if (maxPages == null)
             {
-                // maxPages = 0 nghĩa là crawl tất cả các trang
+                // maxPages = null nghĩa là crawl TẤT CẢ các trang (tất cả pages của truyện)
                 pagesToCrawl = totalPages;
+                if (totalPages > 1)
+                {
+                    Log(context, $"✅ maxPages = null → sẽ crawl TẤT CẢ {totalPages} trang (tất cả pages của truyện)", Application.Common.Models.LogLevel.Info);
+                }
+                else
+                {
+                    Log(context, $"⚠️ maxPages = null nhưng chỉ có {totalPages} trang. Có thể pagination chưa được parse đúng hoặc thực sự chỉ có 1 trang.", Application.Common.Models.LogLevel.Warning);
+                    Log(context, $"Sẽ crawl {pagesToCrawl} trang (có thể cần kiểm tra lại pagination parsing)", Application.Common.Models.LogLevel.Info);
+                }
             }
-            else if (maxPages == null)
+            else if (maxPages <= 0)
             {
-                // maxPages = null nghĩa là chỉ crawl trang đầu tiên
-                pagesToCrawl = 1;
+                // maxPages <= 0 nghĩa là crawl tất cả các trang (backward compatibility)
+                pagesToCrawl = totalPages;
+                Log(context, $"maxPages <= 0 → sẽ crawl TẤT CẢ {totalPages} trang", Application.Common.Models.LogLevel.Info);
             }
             else
             {
                 // maxPages > 0 nghĩa là crawl tối đa maxPages trang
                 pagesToCrawl = Math.Min(maxPages.Value, totalPages);
+                Log(context, $"maxPages = {maxPages} → sẽ crawl tối đa {pagesToCrawl} trang (tổng {totalPages} trang)", Application.Common.Models.LogLevel.Info);
             }
 
-            Log(context, $"Sẽ crawl {pagesToCrawl} trang (tổng {totalPages} trang)", Application.Common.Models.LogLevel.Info);
+            Log(context, $"🚀 Bắt đầu crawl {pagesToCrawl} trang song song...", Application.Common.Models.LogLevel.Info);
 
             var seenUrls = new ConcurrentDictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
             
@@ -192,7 +219,9 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
             var totalItemsTarget = maxResults ?? estimatedTotalItems;
 
             // Tối ưu: Crawl nhiều pages song song với multi-threading
-            const int maxConcurrency = 5; // Số lượng pages crawl đồng thời
+            // Tăng concurrency lên cao hơn để crawl nhanh hơn (đặc biệt khi có nhiều pages)
+            int maxConcurrency = pagesToCrawl > 100 ? 50 : (pagesToCrawl > 20 ? 20 : 10); // Tăng concurrency khi có nhiều pages
+            Log(context, $"⚙️ Sử dụng concurrency: {maxConcurrency} pages đồng thời", Application.Common.Models.LogLevel.Info);
             var semaphore = new SemaphoreSlim(maxConcurrency, maxConcurrency);
             var failedPages = new ConcurrentBag<int>();
             const int maxRetries = 3;
@@ -215,39 +244,91 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
             // Crawl các trang còn lại song song
             if (pagesToCrawl > 1)
             {
-                var tasks = new List<Task>();
+                Log(context, $"📥 Bắt đầu crawl {pagesToCrawl - 1} trang còn lại (từ trang 2 đến trang {pagesToCrawl})...", Application.Common.Models.LogLevel.Info);
                 
-                for (int page = 2; page <= pagesToCrawl; page++)
+                // Với số lượng pages lớn, sử dụng batch processing để tránh tạo quá nhiều tasks cùng lúc
+                const int batchSize = 200; // Xử lý 200 pages mỗi batch
+                var totalPagesToCrawl = pagesToCrawl - 1; // Trừ trang đầu tiên
+                var totalBatches = (int)Math.Ceiling(totalPagesToCrawl / (double)batchSize);
+                
+                var lastProgressLog = DateTime.UtcNow;
+                const int progressLogIntervalSeconds = 10; // Log progress mỗi 10 giây
+                var totalProcessed = 0;
+                
+                for (int batchIndex = 0; batchIndex < totalBatches; batchIndex++)
                 {
                     if (context.CancellationToken.IsCancellationRequested)
                         break;
 
-                    // Kiểm tra nếu đã đủ maxResults
-                    if (maxResults.HasValue && allResults.Count >= maxResults.Value)
+                    var startPage = 2 + (batchIndex * batchSize);
+                    var endPage = Math.Min(startPage + batchSize - 1, pagesToCrawl);
+                    var batchPages = endPage - startPage + 1;
+                    
+                    Log(context, $"📦 Batch {batchIndex + 1}/{totalBatches}: Crawl pages {startPage}-{endPage} ({batchPages} pages)...", 
+                        Application.Common.Models.LogLevel.Info);
+                    
+                    var batchTasks = new List<Task>();
+                    
+                    for (int page = startPage; page <= endPage; page++)
                     {
-                        Log(context, $"Đã đạt giới hạn {maxResults.Value} kết quả", Application.Common.Models.LogLevel.Info);
-                        break;
+                        if (context.CancellationToken.IsCancellationRequested)
+                            break;
+
+                        // Kiểm tra nếu đã đủ maxResults
+                        if (maxResults.HasValue && allResults.Count >= maxResults.Value)
+                        {
+                            Log(context, $"Đã đạt giới hạn {maxResults.Value} kết quả", Application.Common.Models.LogLevel.Info);
+                            break;
+                        }
+
+                        var pageNum = page; // Capture để tránh closure issue
+                        var task = CrawlPageInParallelAsync(
+                            pageNum, 
+                            baseSearchUrl, 
+                            context, 
+                            seenUrls, 
+                            allResults,
+                            semaphore,
+                            failedPages,
+                            maxRetries,
+                            maxResults,
+                            totalItemsTarget,
+                            pagesToCrawl);
+                        
+                        batchTasks.Add(task);
                     }
 
-                    var pageNum = page; // Capture để tránh closure issue
-                    var task = CrawlPageInParallelAsync(
-                        pageNum, 
-                        baseSearchUrl, 
-                        context, 
-                        seenUrls, 
-                        allResults,
-                        semaphore,
-                        failedPages,
-                        maxRetries,
-                        maxResults,
-                        totalItemsTarget,
-                        pagesToCrawl);
+                    // Đợi batch này hoàn thành trước khi chuyển sang batch tiếp theo
+                    await Task.WhenAll(batchTasks);
                     
-                    tasks.Add(task);
+                    totalProcessed += batchTasks.Count;
+                    var percent = (totalProcessed * 100.0) / totalPagesToCrawl;
+                    
+                    // Progress logging
+                    if ((DateTime.UtcNow - lastProgressLog).TotalSeconds >= progressLogIntervalSeconds || batchIndex == totalBatches - 1)
+                    {
+                        Log(context, $"📊 Progress: Đã crawl {totalProcessed}/{totalPagesToCrawl} pages ({percent:F1}%), Đã tìm thấy: {allResults.Count} mangas", 
+                            Application.Common.Models.LogLevel.Info);
+                        lastProgressLog = DateTime.UtcNow;
+                    }
                 }
 
-                // Đợi tất cả tasks hoàn thành
-                await Task.WhenAll(tasks);
+                Log(context, $"✅ Đã hoàn thành crawl {pagesToCrawl} trang. Tổng cộng {allResults.Count} mangas tìm được.", Application.Common.Models.LogLevel.Info);
+            }
+            else if (pagesToCrawl == 1)
+            {
+                Log(context, $"ℹ️ Chỉ crawl 1 trang (totalPages = {totalPages}). Tổng cộng {allResults.Count} mangas tìm được.", Application.Common.Models.LogLevel.Info);
+                if (maxPages == null)
+                {
+                    Log(context, "⚠️ LƯU Ý: maxPages = null nhưng chỉ crawl được 1 trang. Có thể:", Application.Common.Models.LogLevel.Warning);
+                    Log(context, "   1. Pagination element không được tìm thấy hoặc parse không đúng", Application.Common.Models.LogLevel.Warning);
+                    Log(context, "   2. Thực sự chỉ có 1 trang kết quả", Application.Common.Models.LogLevel.Warning);
+                    Log(context, "   → Kiểm tra logs phía trên để xem pagination có được parse đúng không", Application.Common.Models.LogLevel.Warning);
+                }
+            }
+            else if (pagesToCrawl == 1)
+            {
+                Log(context, $"ℹ️ Chỉ crawl 1 trang (totalPages = {totalPages}). Tổng cộng {allResults.Count} mangas tìm được.", Application.Common.Models.LogLevel.Info);
             }
 
             if (failedPages.Count > 0)
@@ -469,7 +550,11 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
             if (titleElement != null)
             {
                 mangaData.Title = titleElement.TextContent?.Trim() ?? "";
-                mangaData.SourceUrl = BuildFullUrl(baseUrl, titleElement.GetAttribute("href") ?? "");
+                var href = titleElement.GetAttribute("href") ?? "";
+                mangaData.SourceUrl = BuildFullUrl(baseUrl, href);
+                
+                // Extract SourceMangaId từ URL
+                mangaData.SourceMangaId = ExtractMangaIdFromUrl(mangaData.SourceUrl);
             }
 
             // Lấy cover image - sử dụng relative path
@@ -538,6 +623,33 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
                     {
                         chapterData.ChapterNumber = chapterMatch.Groups[1].Value;
                         chapterData.ChapterIndex = chapterNum;
+                        // Set SourceChapterId từ chapter number
+                        if (string.IsNullOrEmpty(chapterData.SourceChapterId))
+                        {
+                            chapterData.SourceChapterId = chapterMatch.Groups[1].Value;
+                        }
+                    }
+                    else
+                    {
+                        // Thử extract từ URL
+                        var urlMatch = System.Text.RegularExpressions.Regex.Match(
+                            chapterUrl,
+                            @"chapter[_-]?(\d+)",
+                            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                        if (urlMatch.Success)
+                        {
+                            chapterData.SourceChapterId = urlMatch.Groups[1].Value;
+                            chapterData.ChapterNumber = urlMatch.Groups[1].Value;
+                            if (int.TryParse(urlMatch.Groups[1].Value, out var idx))
+                            {
+                                chapterData.ChapterIndex = idx;
+                            }
+                        }
+                        else
+                        {
+                            // Fallback: sử dụng URL làm SourceChapterId
+                            chapterData.SourceChapterId = chapterUrl.Trim('/').Split('/').LastOrDefault() ?? chapterUrl;
+                        }
                     }
 
                     mangaData.Chapters.Add(chapterData);
@@ -564,6 +676,24 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
             {
                 SourceUrl = url
             };
+
+            // Extract SourceMangaId từ URL (ví dụ: /truyen-tranh/one-piece -> "one-piece")
+            mangaData.SourceMangaId = ExtractMangaIdFromUrl(url);
+
+            // Thử lấy từ script tag nếu có (mangaDetail.id) - ưu tiên hơn URL
+            var mangaDetailScript = document.QuerySelector("//script[contains(text(), 'mangaDetail')]");
+            if (mangaDetailScript != null)
+            {
+                var scriptText = mangaDetailScript.TextContent ?? "";
+                var idMatch = System.Text.RegularExpressions.Regex.Match(
+                    scriptText,
+                    @"""id""\s*:\s*(\d+)",
+                    System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                if (idMatch.Success)
+                {
+                    mangaData.SourceMangaId = idMatch.Groups[1].Value;
+                }
+            }
 
             // Lấy title - <h1 class="title title-detail"><a>One Piece</a></h1>
             var titleElement = document.QuerySelector("//h1[contains(@class, 'title-detail')]//a")
@@ -684,8 +814,28 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
                 }
             }
 
-            // Lấy danh sách chapters - <div class="list-chapters"><div class="l-chapter"><a href="/truyen-tranh/one-piece/chapter-1165">Chapter 1165</a>...</div></div>
+            // Lấy danh sách chapters - thử nhiều selector khác nhau
             var chapterElements = document.QuerySelectorAll("//div[contains(@class, 'list-chapters')]//div[contains(@class, 'l-chapter')]//a[contains(@class, 'll-chap')]").ToList();
+            
+            // Fallback: thử selector đơn giản hơn
+            if (chapterElements.Count == 0)
+            {
+                chapterElements = document.QuerySelectorAll("//div[contains(@class, 'list-chapters')]//a[contains(@href, 'chapter')]").ToList();
+            }
+            
+            // Fallback: thử selector khác
+            if (chapterElements.Count == 0)
+            {
+                chapterElements = document.QuerySelectorAll("//div[contains(@class, 'list-chapters')]//a").ToList();
+            }
+            
+            // Log để debug
+            if (chapterElements.Count == 0)
+            {
+                // Thử tìm bất kỳ link nào có chứa "chapter" trong href
+                chapterElements = document.QuerySelectorAll("//a[contains(@href, 'chapter')]").ToList();
+            }
+            
             foreach (var chapterElement in chapterElements)
             {
                 var chapterUrl = chapterElement.GetAttribute("href");
@@ -716,6 +866,33 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
                     {
                         chapterData.ChapterNumber = chapterMatch.Groups[1].Value;
                         chapterData.ChapterIndex = chapterNum;
+                        // Set SourceChapterId từ chapter number
+                        if (string.IsNullOrEmpty(chapterData.SourceChapterId))
+                        {
+                            chapterData.SourceChapterId = chapterMatch.Groups[1].Value;
+                        }
+                    }
+                    else
+                    {
+                        // Thử extract từ URL với pattern khác
+                        var urlMatch = System.Text.RegularExpressions.Regex.Match(
+                            chapterUrl,
+                            @"chapter[_-]?(\d+)",
+                            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                        if (urlMatch.Success)
+                        {
+                            chapterData.SourceChapterId = urlMatch.Groups[1].Value;
+                            chapterData.ChapterNumber = urlMatch.Groups[1].Value;
+                            if (int.TryParse(urlMatch.Groups[1].Value, out var idx))
+                            {
+                                chapterData.ChapterIndex = idx;
+                            }
+                        }
+                        else
+                        {
+                            // Fallback: sử dụng URL làm SourceChapterId
+                            chapterData.SourceChapterId = chapterUrl.Trim('/').Split('/').LastOrDefault() ?? chapterUrl;
+                        }
                     }
 
                     mangaData.Chapters.Add(chapterData);
@@ -729,6 +906,49 @@ public class NettruyenCrawler : BaseCrawler, IMangaCrawler, IChapterCrawler, IPa
             // Log error nếu có context
             return null;
         }
+    }
+
+    /// <summary>
+    /// Extract manga ID từ URL (ví dụ: /truyen-tranh/one-piece -> "one-piece")
+    /// </summary>
+    private string? ExtractMangaIdFromUrl(string url)
+    {
+        if (string.IsNullOrEmpty(url))
+            return null;
+
+        try
+        {
+            // Pattern: /truyen-tranh/{manga-id} hoặc /truyen-tranh/{manga-id}/...
+            var match = System.Text.RegularExpressions.Regex.Match(
+                url,
+                @"/truyen-tranh/([^/?#]+)",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+
+            // Fallback: lấy phần cuối của URL path
+            var uri = new Uri(url);
+            var segments = uri.Segments;
+            for (int i = segments.Length - 1; i >= 0; i--)
+            {
+                var segment = segments[i].Trim('/');
+                if (!string.IsNullOrEmpty(segment) && 
+                    !segment.Equals("truyen-tranh", StringComparison.OrdinalIgnoreCase) &&
+                    !segment.StartsWith("chapter", StringComparison.OrdinalIgnoreCase))
+                {
+                    return segment;
+                }
+            }
+        }
+        catch
+        {
+            // Ignore errors
+        }
+
+        return null;
     }
 
     /// <summary>

@@ -1,8 +1,8 @@
 using SkyHighManga.Application.Common.Models;
 using SkyHighManga.Application.Interfaces.Services;
 using SkyHighManga.Domain.Entities;
-using SkyHighManga.Infrastructure.Crawlers;
-using SkyHighManga.Infrastructure.Services;
+using SkyHighManga.Infastructure.Crawlers;
+using SkyHighManga.Infastructure.Services;
 
 namespace SkyHighManga.UnitTest.Crawlers;
 

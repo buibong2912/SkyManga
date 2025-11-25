@@ -41,5 +41,11 @@ public interface IMangaService
     /// Kiểm tra chapter đã tồn tại
     /// </summary>
     Task<bool> ChapterExistsAsync(Guid mangaId, string sourceChapterId, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Lấy danh sách SourceChapterIds đã tồn tại (batch check để tối ưu)
+    /// </summary>
+    Task<HashSet<string>> GetExistingChapterIdsAsync(Guid mangaId, IEnumerable<string> sourceChapterIds, CancellationToken cancellationToken = default);
 }
+
 

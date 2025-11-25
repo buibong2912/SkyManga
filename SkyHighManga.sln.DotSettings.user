@@ -1,5 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=220e08dd_002D3f60_002D4731_002D804c_002Dad7440ff218f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="HtmlAgilityPackParserTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AAwaitAdapter_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003Fe9d8dddef3e1802db2ec9e4ac8c6f377a588e6f07cc199b58cf3262aa5d3b_003FAwaitAdapter_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ACancellationToken_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003F3c32b6774a69464667352a9e262bc924c57674f811c382e29abe8dbe3639f4c_003FCancellationToken_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=220e08dd_002D3f60_002D4731_002D804c_002Dad7440ff218f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="HtmlAgilityPackParserTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Services.HtmlAgilityPackParserTests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Crawlers.NettruyenCrawlerIntegrationTests&lt;/TestId&gt;
@@ -12,4 +14,5 @@
     &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Services.CrawlJobServiceTests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::46481B7D-017E-4E25-A910-75541AC2B7B5::net9.0::SkyHighManga.UnitTest.Services.CrawlJobServiceRealTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String>
+	</wpf:ResourceDictionary>

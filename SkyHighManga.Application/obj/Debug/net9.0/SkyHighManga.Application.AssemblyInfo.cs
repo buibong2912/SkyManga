@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SkyHighManga.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da55687614920c9da11032c9cf2465457aa00cdc")]
 [assembly: System.Reflection.AssemblyProductAttribute("SkyHighManga.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SkyHighManga.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

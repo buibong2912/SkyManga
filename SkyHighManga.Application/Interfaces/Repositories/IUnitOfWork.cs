@@ -10,6 +10,7 @@ public interface IUnitOfWork : IDisposable
     IPageRepository Pages { get; }
     IAuthorRepository Authors { get; }
     IGenreRepository Genres { get; }
+    ICrawlJobRepository CrawlJobs { get; }
 
     /// <summary>
     /// Lưu tất cả thay đổi
@@ -31,4 +32,5 @@ public interface IUnitOfWork : IDisposable
     /// </summary>
     Task RollbackTransactionAsync(CancellationToken cancellationToken = default);
 }
+
 

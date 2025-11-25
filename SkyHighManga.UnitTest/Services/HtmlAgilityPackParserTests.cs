@@ -1,5 +1,5 @@
 using SkyHighManga.Application.Interfaces.Services;
-using SkyHighManga.Infrastructure.Services;
+using SkyHighManga.Infastructure.Services;
 
 namespace SkyHighManga.UnitTest.Services;
 

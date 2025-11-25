@@ -29,6 +29,23 @@ public class ChapterRepository : Repository<Chapter>, IChapterRepository
             .AnyAsync(c => c.MangaId == mangaId && c.SourceChapterId == sourceChapterId, cancellationToken);
     }
 
+    public async Task<HashSet<string>> GetExistingSourceChapterIdsAsync(Guid mangaId, IEnumerable<string> sourceChapterIds, CancellationToken cancellationToken = default)
+    {
+        var sourceChapterIdsList = sourceChapterIds.Where(id => !string.IsNullOrEmpty(id)).Distinct().ToList();
+        if (sourceChapterIdsList.Count == 0)
+        {
+            return new HashSet<string>();
+        }
+
+        // Sử dụng một query duy nhất để check nhiều chapters cùng lúc
+        var existingIds = await _dbSet
+            .Where(c => c.MangaId == mangaId && sourceChapterIdsList.Contains(c.SourceChapterId))
+            .Select(c => c.SourceChapterId)
+            .ToListAsync(cancellationToken);
+
+        return new HashSet<string>(existingIds, StringComparer.OrdinalIgnoreCase);
+    }
+
     public async Task<IEnumerable<Chapter>> GetByMangaIdAsync(Guid mangaId, CancellationToken cancellationToken = default)
     {
         return await _dbSet

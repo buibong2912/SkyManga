@@ -11,6 +11,11 @@ public class MangaRepository : Repository<Manga>, IMangaRepository
     {
     }
 
+    public IQueryable<Manga> GetAll()
+    {
+        return _dbSet.AsQueryable();
+    }
+
     public async Task<Manga?> FindBySourceIdAsync(Guid sourceId, string sourceMangaId, CancellationToken cancellationToken = default)
     {
         return await _dbSet

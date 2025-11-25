@@ -23,7 +23,7 @@ public class SourceConfiguration : IEntityTypeConfiguration<Source>
             .HasMaxLength(500);
 
         builder.Property(s => s.Description)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(s => s.Type)
             .IsRequired()
@@ -37,7 +37,7 @@ public class SourceConfiguration : IEntityTypeConfiguration<Source>
             .HasMaxLength(200);
 
         builder.Property(s => s.ConfigurationJson)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(s => s.CreatedAt)
             .IsRequired();

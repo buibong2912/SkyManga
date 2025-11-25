@@ -47,6 +47,16 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[13.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -173,9 +183,21 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.17, )"
+            },
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.71, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.3.0, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.3.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -190,6 +212,10 @@
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.2, )"
             }
           },
           "imports": [

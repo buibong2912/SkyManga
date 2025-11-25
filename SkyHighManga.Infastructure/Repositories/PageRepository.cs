@@ -23,6 +23,18 @@ public class PageRepository : Repository<Page>, IPageRepository
             .AnyAsync(p => p.ChapterId == chapterId && p.SourcePageId == sourcePageId, cancellationToken);
     }
 
+    public async Task<bool> ExistsByPageNumberAsync(Guid chapterId, int pageNumber, CancellationToken cancellationToken = default)
+    {
+        return await _dbSet
+            .AnyAsync(p => p.ChapterId == chapterId && p.PageNumber == pageNumber, cancellationToken);
+    }
+
+    public async Task<Page?> FindByPageNumberAsync(Guid chapterId, int pageNumber, CancellationToken cancellationToken = default)
+    {
+        return await _dbSet
+            .FirstOrDefaultAsync(p => p.ChapterId == chapterId && p.PageNumber == pageNumber, cancellationToken);
+    }
+
     public async Task<IEnumerable<Page>> GetByChapterIdAsync(Guid chapterId, CancellationToken cancellationToken = default)
     {
         return await _dbSet

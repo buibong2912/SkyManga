@@ -18,6 +18,16 @@ public interface IPageRepository : IRepository<Page>
     Task<bool> ExistsBySourceIdAsync(Guid chapterId, string sourcePageId, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Kiểm tra page đã tồn tại theo PageNumber
+    /// </summary>
+    Task<bool> ExistsByPageNumberAsync(Guid chapterId, int pageNumber, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Tìm page theo PageNumber
+    /// </summary>
+    Task<Page?> FindByPageNumberAsync(Guid chapterId, int pageNumber, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Lấy danh sách pages của một chapter
     /// </summary>
     Task<IEnumerable<Page>> GetByChapterIdAsync(Guid chapterId, CancellationToken cancellationToken = default);
@@ -27,4 +37,5 @@ public interface IPageRepository : IRepository<Page>
     /// </summary>
     Task<IEnumerable<Page>> GetNotDownloadedAsync(Guid chapterId, CancellationToken cancellationToken = default);
 }
+
 

@@ -19,7 +19,7 @@ public class CrawlJobConfiguration : IEntityTypeConfiguration<CrawlJob>
             .HasMaxLength(500);
 
         builder.Property(cj => cj.Description)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(cj => cj.Type)
             .IsRequired()
@@ -30,7 +30,7 @@ public class CrawlJobConfiguration : IEntityTypeConfiguration<CrawlJob>
             .HasConversion<int>();
 
         builder.Property(cj => cj.ConfigurationJson)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(cj => cj.StartUrl)
             .HasMaxLength(2000);
@@ -48,10 +48,10 @@ public class CrawlJobConfiguration : IEntityTypeConfiguration<CrawlJob>
             .HasDefaultValue(0);
 
         builder.Property(cj => cj.ErrorMessage)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(cj => cj.StackTrace)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(cj => cj.CreatedAt)
             .IsRequired();
